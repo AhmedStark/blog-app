@@ -20,6 +20,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Carbon\Carbon;
 
 class MigrationCartalystSentinel extends Migration
 {
@@ -72,6 +73,11 @@ class MigrationCartalystSentinel extends Migration
             $table->engine = 'InnoDB';
             $table->unique('slug');
         });
+
+        DB::table('roles')->insert([
+            ['name'=>'admin','slug'=>'admin','created_at'=>Carbon::now(),'updated_at'=>Carbon::now()],
+            ['name'=>'viewer','slug'=>'viewer','created_at'=>Carbon::now(),'updated_at'=>Carbon::now()]
+        ]);
 
         Schema::create('role_users', function (Blueprint $table) {
             $table->integer('user_id')->unsigned();
