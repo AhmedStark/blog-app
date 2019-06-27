@@ -18,7 +18,7 @@
         
     </v-layout>
     
-    <Vueditor  class="ma-3 raw" ></Vueditor>
+    <Vueditor ref="editor" class="ma-3 raw" ></Vueditor>
     </v-card-text>
     </v-card>
 </v-container> 
@@ -26,8 +26,23 @@
 
 
 </template>
+<script>
+export default {
+    data(){
+        return{
+            title:"",
+            content:""
+        }
+    },methods:{
+        save:function(){ 
+            this.content = this.$refs.editor.getContent();
+        },
+    }
+}
+</script>
 <style scope>
 .raw{
     height:500pt;
 }
 </style>
+

@@ -1,6 +1,7 @@
 <template>
     <v-app color="grey lighten-4">
-        <v-container class="white">
+        <v-container >
+        <v-card>
         <v-layout>
 
         <v-flex offset-md2 md8 >
@@ -30,6 +31,7 @@
         <v-btn class="fab-margin hidden-md-and-up" fixed bottom right fab dark color="indigo">
             <v-icon dark>add</v-icon>
         </v-btn>
+        </v-card>
         </v-container>
     </v-app>
 </template>

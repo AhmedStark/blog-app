@@ -27,7 +27,6 @@
   </v-toolbar>
   <br>
   <br>
-  <br class="hidden-sm-and-down">
   </div>
 </template>
 <script>

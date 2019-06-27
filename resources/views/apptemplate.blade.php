@@ -18,7 +18,7 @@
         </head>
         <body>
         <div id='app'>
-        <v-app>
+        <v-app >
             <nav-bar>
             
             </nav-bar>
