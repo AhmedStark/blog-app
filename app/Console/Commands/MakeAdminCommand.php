@@ -16,6 +16,8 @@ class MakeAdminCommand extends Command
     public const MAX_NAME=225;
     public const MAX_EMAIL=225;
     public const MAX_PASS=225;
+
+    
     /**
      * The console command description.
      *
