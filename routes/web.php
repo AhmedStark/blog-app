@@ -17,3 +17,7 @@ Route::get('/login', function () {
 Route::get('/', function () {
     return view('main');
 });
+
+Route::get('/admin/create-post', function () {
+    return view('create-post');
+});

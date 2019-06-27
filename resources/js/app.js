@@ -5,6 +5,7 @@
  */
 
 
+require("./bootstrap");
 
 window.Vue = require('vue');
 import Vue from 'vue'
@@ -14,21 +15,17 @@ Vue.use(Vuetify)
 
 import 'vuetify/dist/vuetify.min.css' // Ensure you are using css-loader
 
-/**
- * The following block of code may be used to automatically register your
- * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
- *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
- */
-
-// const files = require.context('./', true, /\.vue$/i);
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
+import Vueditor from 'vueditor' 
+import 'vueditor/dist/style/vueditor.min.css' 
+let config = { toolbar: [ 'removeFormat', 'undo', '|', 'elements', 'fontName', 'fontSize', 'foreColor', 'backColor', 'divider', 'bold', 'italic', 'underline', 'strikeThrough', 'links', 'divider', 'subscript', 'superscript', 'divider', 'justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull', '|', 'indent', 'outdent', 'insertOrderedList', 'insertUnorderedList' ], fontName: [ {val: 'arial black'}, {val: 'times new roman'}, {val: 'Courier New'} ], fontSize: ['12px', '14px', '16px', '18px', '0.8rem', '1.0rem', '1.2rem', '1.5rem', '2.0rem'], uploadUrl: '' }; 
+Vue.use(Vueditor, config);
 
 Vue.component('login-form', require('./components/LoginForm.vue').default);
+
+Vue.component('create-post-form', require('./components/CreatePost.vue').default);
 Vue.component('nav-bar', require('./components/NavBar.vue').default);
 Vue.component('feed-page', require('./components/FeedPage.vue').default);
-
+Vue.component('app-footer', require('./components/AppFooter.vue').default);
 Vue.component('post', require('./components/Post.vue').default);
 
 /**
