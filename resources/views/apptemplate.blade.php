@@ -23,7 +23,7 @@
             
             </nav-bar>
             @yield("content")
-            <app-footer></app-footer>
+            <app-footer :icons="{{$icons}}"></app-footer>
         </v-app>
                  
         </div>

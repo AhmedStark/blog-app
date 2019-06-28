@@ -5,6 +5,7 @@ use Sentinel;
 use Illuminate\Http\Request;
 use Validator;
 
+
 class UserController extends Controller
 {
     

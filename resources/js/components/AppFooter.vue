@@ -21,15 +21,26 @@
               <template v-slot:activator="{ on }">
 
                 <v-btn
-                
+                  v-if="admin"
                   v-for="icon in icons"
-                  :key="icon"
+                  :key="icon.id"
                   class="mx-3"
                   dark
                   icon
                   v-on="on"
                 >
-                  <v-icon size="24px">{{ icon }}</v-icon>
+                  <v-icon size="24px">{{ icon.icon }}</v-icon>
+                </v-btn>
+                <v-btn
+                  v-for="icon in icons"
+                  :href="icon.link"
+                  v-if="!admin"
+                  :key="icon.id"
+                  class="mx-3"
+                  dark
+                  icon
+                >
+                  <v-icon size="24px">{{ icon.icon }}</v-icon>
                 </v-btn>
 
               </template>
@@ -37,7 +48,7 @@
         
 
         <v-card>
-                <v-form id="social" action="/social" methon="post">
+                <form id="social" action="/social" method="post">
 
                       
                     <input type="hidden" name="_token" :value="csrf" />
@@ -102,7 +113,7 @@
                       </v-btn>
                     </v-card-actions>
 
-                  </v-form>
+                  </form>
               </v-card>
             </v-dialog>
           </div>
@@ -116,15 +127,20 @@
 
 <script>
   export default {
+    props:{
+      admin:{default:false,type:Boolean},
+      links:{default:function(){
+        return[];
+      },type:Array},
+
+      icons:{default:function(){
+        return[];
+      },type:Array},
+    },
     data: () => ({
       csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
       dialog: false,
-      icons: [
-        'fa fa-facebook',
-        'fa fa-twitter',
-        'fa fa-linkedin',
-        'fa fa-instagram'
-      ]
+      
     })
   }
 </script>

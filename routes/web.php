@@ -12,9 +12,7 @@
 */
 
 Route::get('/login', 'UserController@login');
-Route::get('/', function () {
-    return view('main');
-});
+Route::get('/', 'SocialController@main');
 
 Route::get('/admin/create-post', function () {
     return view('create-post');
@@ -23,8 +21,10 @@ Route::get('/signup', function () {
     return view('create-user');
 });
 
+
 Route::post('/logout', 'UserController@logout');
 
+Route::post('/social', 'SocialController@updateLinks');
 
 Route::post('/signup', 'UserController@signup');
 Route::post('/first-login', 'UserController@firstLogin');

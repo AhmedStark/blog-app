@@ -1813,12 +1813,40 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    admin: {
+      "default": false,
+      type: Boolean
+    },
+    links: {
+      "default": function _default() {
+        return [];
+      },
+      type: Array
+    },
+    icons: {
+      "default": function _default() {
+        return [];
+      },
+      type: Array
+    }
+  },
   data: function data() {
     return {
       csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-      dialog: false,
-      icons: ['fa fa-facebook', 'fa fa-twitter', 'fa fa-linkedin', 'fa fa-instagram']
+      dialog: false
     };
   }
 });
@@ -38307,25 +38335,52 @@ var render = function() {
                       key: "activator",
                       fn: function(ref) {
                         var on = ref.on
-                        return _vm._l(_vm.icons, function(icon) {
-                          return _c(
-                            "v-btn",
-                            _vm._g(
-                              {
-                                key: icon,
-                                staticClass: "mx-3",
-                                attrs: { dark: "", icon: "" }
-                              },
-                              on
-                            ),
-                            [
-                              _c("v-icon", { attrs: { size: "24px" } }, [
-                                _vm._v(_vm._s(icon))
-                              ])
-                            ],
-                            1
-                          )
-                        })
+                        return [
+                          _vm._l(_vm.icons, function(icon) {
+                            return _vm.admin
+                              ? _c(
+                                  "v-btn",
+                                  _vm._g(
+                                    {
+                                      key: icon.id,
+                                      staticClass: "mx-3",
+                                      attrs: { dark: "", icon: "" }
+                                    },
+                                    on
+                                  ),
+                                  [
+                                    _c("v-icon", { attrs: { size: "24px" } }, [
+                                      _vm._v(_vm._s(icon.icon))
+                                    ])
+                                  ],
+                                  1
+                                )
+                              : _vm._e()
+                          }),
+                          _vm._v(" "),
+                          _vm._l(_vm.icons, function(icon) {
+                            return !_vm.admin
+                              ? _c(
+                                  "v-btn",
+                                  {
+                                    key: icon.id,
+                                    staticClass: "mx-3",
+                                    attrs: {
+                                      href: icon.link,
+                                      dark: "",
+                                      icon: ""
+                                    }
+                                  },
+                                  [
+                                    _c("v-icon", { attrs: { size: "24px" } }, [
+                                      _vm._v(_vm._s(icon.icon))
+                                    ])
+                                  ],
+                                  1
+                                )
+                              : _vm._e()
+                          })
+                        ]
                       }
                     }
                   ]),
@@ -38339,133 +38394,129 @@ var render = function() {
                 },
                 [
                   _vm._v(" "),
-                  _c(
-                    "v-card",
-                    [
-                      _c(
-                        "v-form",
-                        {
-                          attrs: {
-                            id: "social",
-                            action: "/social",
-                            methon: "post"
-                          }
-                        },
-                        [
-                          _c("input", {
-                            attrs: { type: "hidden", name: "_token" },
-                            domProps: { value: _vm.csrf }
-                          }),
-                          _vm._v(" "),
-                          _c(
-                            "v-card-title",
-                            {
-                              staticClass: "headline grey lighten-2",
-                              attrs: { "primary-title": "" }
-                            },
-                            [
-                              _vm._v(
-                                "\n                    Change my social media Links\n                  "
-                              )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-card-text",
-                            [
-                              _c("v-text-field", {
-                                staticClass: "mx-4",
-                                attrs: {
-                                  name: "facebook",
-                                  label: "Facebook link",
-                                  required: ""
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c("v-text-field", {
-                                staticClass: "mx-4",
-                                attrs: {
-                                  name: "twitter",
-                                  label: "Twitter link",
-                                  required: ""
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c("v-text-field", {
-                                staticClass: "mx-4",
-                                attrs: {
-                                  name: "linkedin",
-                                  label: "LinkedIn link",
-                                  required: ""
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c("v-text-field", {
-                                staticClass: "mx-4",
-                                attrs: {
-                                  name: "insta",
-                                  label: "Instagram link",
-                                  required: ""
-                                }
-                              })
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c("v-divider"),
-                          _vm._v(" "),
-                          _c(
-                            "v-card-actions",
-                            [
-                              _c("v-spacer"),
-                              _vm._v(" "),
-                              _c(
-                                "v-btn",
-                                {
-                                  attrs: { color: "primary", flat: "" },
-                                  on: {
-                                    click: function($event) {
-                                      _vm.dialog = false
-                                    }
+                  _c("v-card", [
+                    _c(
+                      "form",
+                      {
+                        attrs: {
+                          id: "social",
+                          action: "/social",
+                          method: "post"
+                        }
+                      },
+                      [
+                        _c("input", {
+                          attrs: { type: "hidden", name: "_token" },
+                          domProps: { value: _vm.csrf }
+                        }),
+                        _vm._v(" "),
+                        _c(
+                          "v-card-title",
+                          {
+                            staticClass: "headline grey lighten-2",
+                            attrs: { "primary-title": "" }
+                          },
+                          [
+                            _vm._v(
+                              "\n                    Change my social media Links\n                  "
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "v-card-text",
+                          [
+                            _c("v-text-field", {
+                              staticClass: "mx-4",
+                              attrs: {
+                                name: "facebook",
+                                label: "Facebook link",
+                                required: ""
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("v-text-field", {
+                              staticClass: "mx-4",
+                              attrs: {
+                                name: "twitter",
+                                label: "Twitter link",
+                                required: ""
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("v-text-field", {
+                              staticClass: "mx-4",
+                              attrs: {
+                                name: "linkedin",
+                                label: "LinkedIn link",
+                                required: ""
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("v-text-field", {
+                              staticClass: "mx-4",
+                              attrs: {
+                                name: "insta",
+                                label: "Instagram link",
+                                required: ""
+                              }
+                            })
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c("v-divider"),
+                        _vm._v(" "),
+                        _c(
+                          "v-card-actions",
+                          [
+                            _c("v-spacer"),
+                            _vm._v(" "),
+                            _c(
+                              "v-btn",
+                              {
+                                attrs: { color: "primary", flat: "" },
+                                on: {
+                                  click: function($event) {
+                                    _vm.dialog = false
                                   }
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                      Cancel\n                    "
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "v-btn",
+                              {
+                                attrs: {
+                                  form: "social",
+                                  color: "primary",
+                                  flat: "",
+                                  type: "submit"
                                 },
-                                [
-                                  _vm._v(
-                                    "\n                      Cancel\n                    "
-                                  )
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "v-btn",
-                                {
-                                  attrs: {
-                                    form: "social",
-                                    color: "primary",
-                                    flat: "",
-                                    type: "submit"
-                                  },
-                                  on: {
-                                    click: function($event) {
-                                      _vm.dialog = false
-                                    }
+                                on: {
+                                  click: function($event) {
+                                    _vm.dialog = false
                                   }
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                      Done\n                    "
-                                  )
-                                ]
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  )
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                      Done\n                    "
+                                )
+                              ]
+                            )
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  ])
                 ],
                 1
               )

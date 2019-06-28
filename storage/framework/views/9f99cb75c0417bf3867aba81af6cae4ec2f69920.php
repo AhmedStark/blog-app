@@ -23,7 +23,7 @@
             
             </nav-bar>
             <?php echo $__env->yieldContent("content"); ?>
-            <app-footer></app-footer>
+            <app-footer :icons="<?php echo e($icons); ?>"></app-footer>
         </v-app>
                  
         </div>
