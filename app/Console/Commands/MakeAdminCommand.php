@@ -16,6 +16,8 @@ class MakeAdminCommand extends Command
     public const MAX_NAME=225;
     public const MAX_EMAIL=225;
     public const MAX_PASS=225;
+    public const MIN_PASS=6;
+
 
     
     /**
@@ -68,8 +70,8 @@ class MakeAdminCommand extends Command
         
         if($request['password']!==$request['r_password']){
             $this->warn('Password does not match....');
-        }elseif (strlen($request['password']<10)){
-            $this->warn('Password has to be more than 10 letters');
+        }elseif (strlen($request['password']<slef::MIN_PASS)){
+            $this->warn('Password has to be more than 6 letters');
         }elseif ($validRequest->fails()){
             $this->warn('Password must be of 6 characters or more.');
         }else{

@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/login', function () {
-    return view('login');
-});
+Route::get('/login', 'UserController@login');
 Route::get('/', function () {
     return view('main');
 });
@@ -21,3 +19,9 @@ Route::get('/', function () {
 Route::get('/admin/create-post', function () {
     return view('create-post');
 });
+Route::get('/signup', function () {
+    return view('create-user');
+});
+
+Route::post('/signup', 'UserController@signup');
+Route::post('/first-login', 'UserController@firstLogin');

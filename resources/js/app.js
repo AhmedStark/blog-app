@@ -21,7 +21,7 @@ let config = { toolbar: [ 'removeFormat', 'undo', '|', 'elements', 'fontName', '
 Vue.use(Vueditor, config);
 
 Vue.component('login-form', require('./components/LoginForm.vue').default);
-
+Vue.component('create-user-form', require('./components/CreateUserForm.vue').default);
 Vue.component('create-post-form', require('./components/CreatePost.vue').default);
 Vue.component('nav-bar', require('./components/NavBar.vue').default);
 Vue.component('feed-page', require('./components/FeedPage.vue').default);
