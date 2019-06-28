@@ -14,9 +14,8 @@
 Route::get('/login', 'UserController@login');
 Route::get('/', 'SocialController@main');
 
-Route::get('/admin/create-post', function () {
-    return view('create-post');
-});
+Route::get('/admin/create-post', 'PostController@CreatePostView');
+
 Route::get('/signup', function () {
     return view('create-user');
 });
@@ -28,3 +27,5 @@ Route::post('/social', 'SocialController@updateLinks');
 
 Route::post('/signup', 'UserController@signup');
 Route::post('/first-login', 'UserController@firstLogin');
+
+Route::post('/store-post', 'PostController@store');
