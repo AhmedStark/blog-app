@@ -2,7 +2,7 @@
     <div>
   <v-toolbar dark app color="teal darken-4">
     <v-spacer></v-spacer>
-    <v-toolbar-title class="white--text"><b>My</b>Blog</v-toolbar-title>
+    <v-toolbar-title><a href="/"><b class="lime--text">My</b><b class="white--text">Blog</b></a></v-toolbar-title>
     <v-spacer></v-spacer>
     <v-spacer></v-spacer>
     <v-menu v-if="checklogin" offset-y>
@@ -16,11 +16,16 @@
         </v-btn>
       </template>
       <v-list>
-        <v-list-tile @click="logout">
-          <v-list-tile-title>
-            Logout <i class="fa fa-sign-out" aria-hidden="true"></i>
-          </v-list-tile-title>
+      <v-form id="logout" action="/logout" method="post">
+        <input type="hidden" name="_token" :value="csrf" /> 
+        <v-list-tile dark>
+          
+            <v-btn type="submit"  form="logout">
+              Logout <i class="fa fa-sign-out" aria-hidden="true"></i>
+            </v-btn>
+            
         </v-list-tile>
+      </v-form>
       </v-list>
     </v-menu>
 
@@ -41,6 +46,12 @@ export default {
             default:"Ahmed",
             type:String,
         }
-    }
+    },
+    data(){
+      return{
+        csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+
+          }
+    },
 }
 </script>

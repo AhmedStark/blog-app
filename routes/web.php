@@ -23,5 +23,8 @@ Route::get('/signup', function () {
     return view('create-user');
 });
 
+Route::post('/logout', 'UserController@logout');
+
+
 Route::post('/signup', 'UserController@signup');
 Route::post('/first-login', 'UserController@firstLogin');

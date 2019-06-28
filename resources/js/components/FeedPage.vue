@@ -28,7 +28,7 @@
         </v-flex>
         
         </v-layout>
-        <v-btn class="fab-margin hidden-md-and-up" fixed bottom right fab dark color="indigo">
+        <v-btn href="/admin/create-post" class="fab-margin hidden-md-and-up" fixed bottom right fab dark color="indigo">
             <v-icon dark>add</v-icon>
         </v-btn>
         </v-card>

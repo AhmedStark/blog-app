@@ -48,6 +48,7 @@ class UserController extends Controller
 
     public function logout(){
         Sentinel::logout();
+        return redirect('');
     }
 
     public function signup(Request $request){

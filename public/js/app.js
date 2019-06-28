@@ -1730,10 +1730,95 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      icons: ['fa fa-facebook', 'fa fa-twitter', 'fa fa-google-plus', 'fa fa-linkedin', 'fa fa-instagram']
+      csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+      dialog: false,
+      icons: ['fa fa-facebook', 'fa fa-twitter', 'fa fa-linkedin', 'fa fa-instagram']
     };
   }
 });
@@ -2060,6 +2145,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     checklogin: {
@@ -2070,6 +2160,11 @@ __webpack_require__.r(__webpack_exports__);
       "default": "Ahmed",
       type: String
     }
+  },
+  data: function data() {
+    return {
+      csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+    };
   }
 });
 
@@ -38191,40 +38286,197 @@ var render = function() {
         "v-card",
         { staticClass: "flex", attrs: { flat: "", tile: "" } },
         [
+          _c("v-card-title", { staticClass: "teal darken-4" }, [
+            _c("strong", { staticClass: "subheading" }, [
+              _vm._v("Find me on social networks!")
+            ])
+          ]),
+          _vm._v(" "),
+          _c("v-spacer"),
+          _vm._v(" "),
           _c(
-            "v-card-title",
-            { staticClass: "teal darken-4" },
+            "div",
+            { staticClass: "text-xs-center" },
             [
-              _c("strong", { staticClass: "subheading" }, [
-                _vm._v("Get connected with us on social networks!")
-              ]),
-              _vm._v(" "),
-              _c("v-spacer"),
-              _vm._v(" "),
-              _vm._l(_vm.icons, function(icon) {
-                return _c(
-                  "v-btn",
-                  {
-                    key: icon,
-                    staticClass: "mx-3",
-                    attrs: { dark: "", icon: "" }
-                  },
-                  [
-                    _c("v-icon", { attrs: { size: "24px" } }, [
-                      _vm._v(_vm._s(icon))
-                    ])
-                  ],
-                  1
-                )
-              })
+              _c(
+                "v-dialog",
+                {
+                  attrs: { width: "500" },
+                  scopedSlots: _vm._u([
+                    {
+                      key: "activator",
+                      fn: function(ref) {
+                        var on = ref.on
+                        return _vm._l(_vm.icons, function(icon) {
+                          return _c(
+                            "v-btn",
+                            _vm._g(
+                              {
+                                key: icon,
+                                staticClass: "mx-3",
+                                attrs: { dark: "", icon: "" }
+                              },
+                              on
+                            ),
+                            [
+                              _c("v-icon", { attrs: { size: "24px" } }, [
+                                _vm._v(_vm._s(icon))
+                              ])
+                            ],
+                            1
+                          )
+                        })
+                      }
+                    }
+                  ]),
+                  model: {
+                    value: _vm.dialog,
+                    callback: function($$v) {
+                      _vm.dialog = $$v
+                    },
+                    expression: "dialog"
+                  }
+                },
+                [
+                  _vm._v(" "),
+                  _c(
+                    "v-card",
+                    [
+                      _c(
+                        "v-form",
+                        {
+                          attrs: {
+                            id: "social",
+                            action: "/social",
+                            methon: "post"
+                          }
+                        },
+                        [
+                          _c("input", {
+                            attrs: { type: "hidden", name: "_token" },
+                            domProps: { value: _vm.csrf }
+                          }),
+                          _vm._v(" "),
+                          _c(
+                            "v-card-title",
+                            {
+                              staticClass: "headline grey lighten-2",
+                              attrs: { "primary-title": "" }
+                            },
+                            [
+                              _vm._v(
+                                "\n                    Change my social media Links\n                  "
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-card-text",
+                            [
+                              _c("v-text-field", {
+                                staticClass: "mx-4",
+                                attrs: {
+                                  name: "facebook",
+                                  label: "Facebook link",
+                                  required: ""
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c("v-text-field", {
+                                staticClass: "mx-4",
+                                attrs: {
+                                  name: "twitter",
+                                  label: "Twitter link",
+                                  required: ""
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c("v-text-field", {
+                                staticClass: "mx-4",
+                                attrs: {
+                                  name: "linkedin",
+                                  label: "LinkedIn link",
+                                  required: ""
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c("v-text-field", {
+                                staticClass: "mx-4",
+                                attrs: {
+                                  name: "insta",
+                                  label: "Instagram link",
+                                  required: ""
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c("v-divider"),
+                          _vm._v(" "),
+                          _c(
+                            "v-card-actions",
+                            [
+                              _c("v-spacer"),
+                              _vm._v(" "),
+                              _c(
+                                "v-btn",
+                                {
+                                  attrs: { color: "primary", flat: "" },
+                                  on: {
+                                    click: function($event) {
+                                      _vm.dialog = false
+                                    }
+                                  }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                      Cancel\n                    "
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-btn",
+                                {
+                                  attrs: {
+                                    form: "social",
+                                    color: "primary",
+                                    flat: "",
+                                    type: "submit"
+                                  },
+                                  on: {
+                                    click: function($event) {
+                                      _vm.dialog = false
+                                    }
+                                  }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                      Done\n                    "
+                                  )
+                                ]
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
             ],
-            2
+            1
           ),
           _vm._v(" "),
           _c(
             "v-card-actions",
             { staticClass: "grey darken-3 justify-center" },
-            [_vm._v("\n      ©2018 — "), _c("strong", [_vm._v("Vuetify")])]
+            [_vm._v("\n      ©Ahmed Aldawoud "), _c("strong")]
           )
         ],
         1
@@ -38572,6 +38824,7 @@ var render = function() {
                 {
                   staticClass: "fab-margin hidden-md-and-up",
                   attrs: {
+                    href: "/admin/create-post",
                     fixed: "",
                     bottom: "",
                     right: "",
@@ -38736,9 +38989,11 @@ var render = function() {
         [
           _c("v-spacer"),
           _vm._v(" "),
-          _c("v-toolbar-title", { staticClass: "white--text" }, [
-            _c("b", [_vm._v("My")]),
-            _vm._v("Blog")
+          _c("v-toolbar-title", [
+            _c("a", { attrs: { href: "/" } }, [
+              _c("b", { staticClass: "lime--text" }, [_vm._v("My")]),
+              _c("b", { staticClass: "white--text" }, [_vm._v("Blog")])
+            ])
           ]),
           _vm._v(" "),
           _c("v-spacer"),
@@ -38787,16 +39042,38 @@ var render = function() {
                     "v-list",
                     [
                       _c(
-                        "v-list-tile",
-                        { on: { click: _vm.logout } },
+                        "v-form",
+                        {
+                          attrs: {
+                            id: "logout",
+                            action: "/logout",
+                            method: "post"
+                          }
+                        },
                         [
-                          _c("v-list-tile-title", [
-                            _vm._v("\n          Logout "),
-                            _c("i", {
-                              staticClass: "fa fa-sign-out",
-                              attrs: { "aria-hidden": "true" }
-                            })
-                          ])
+                          _c("input", {
+                            attrs: { type: "hidden", name: "_token" },
+                            domProps: { value: _vm.csrf }
+                          }),
+                          _vm._v(" "),
+                          _c(
+                            "v-list-tile",
+                            { attrs: { dark: "" } },
+                            [
+                              _c(
+                                "v-btn",
+                                { attrs: { type: "submit", form: "logout" } },
+                                [
+                                  _vm._v("\n            Logout "),
+                                  _c("i", {
+                                    staticClass: "fa fa-sign-out",
+                                    attrs: { "aria-hidden": "true" }
+                                  })
+                                ]
+                              )
+                            ],
+                            1
+                          )
                         ],
                         1
                       )
