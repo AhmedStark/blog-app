@@ -1,6 +1,6 @@
 @extends("apptemplate")
 @section("content")
 
-    <feed-page></feed-page>
+    <feed-page :posts="{{json_encode($posts)}}"></feed-page>
 
 @endSection

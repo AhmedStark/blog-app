@@ -12,7 +12,7 @@
 */
 
 Route::get('/login', 'UserController@login');
-Route::get('/', 'SocialController@main');
+Route::get('/', 'PostController@getPosts');
 
 Route::get('/admin/create-post', 'PostController@CreatePostView');
 

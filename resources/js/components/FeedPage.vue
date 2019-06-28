@@ -11,7 +11,7 @@
         <v-layout wrap>
         
         <v-flex offset-md2 md8 >
-            <post class="ma-2" v-for="(post,index) in posts" :title="post.title" :content="post.content" :date="post.date" :key="index"></post>
+            <post class="ma-2" v-for="(post,index) in posts.data" :title="post.title" :id="post._id" :content="post.content" :date="post.created_at" :key="index"></post>
         </v-flex>
         
         <v-flex offset-md2 md8 >
@@ -19,7 +19,7 @@
             <div class="text-xs-center">
                 <v-pagination
                 v-model="page"
-                :length="6"
+                :length="posts.last_page"
                 @input="changePage"
                 ></v-pagination>
             </div>
@@ -39,29 +39,14 @@
 export default {
     props:{
         posts:{
-            type:Array,
+            type:Object,
             default:function(){
-                return [
-                    {title:"Abo",content:"sdawgdv fbwgvjygfuab dhubwavgd dbwaghdvtyw dcbuwkadhjg sdbkjwaykhild"
-                    ,date:"2018-1-1"},
-
-                    {title:"Abo",content:"sssssssssssssssssssssssssssssssssssssssssssssssssss"
-                    ,date:"2018-1-1"},
-
-                    {title:"Abo",content:"sssssssssssssssssssssssssssssssssssssssssssssssssss"
-                    ,date:"2018-1-1"},
-
-                    {title:"Abo",content:"sssssssssssssssssssssssssssssssssssssssssssssssssss"
-                    ,date:"2018-1-1"},
-
-                    {title:"Abo",content:"sssssssssssssssssssssssssssssssssssssssssssssssssss"
-                    ,date:"2018-1-1"},
-                ];
+                return {}
             }
     }   
     },data(){
         return{
-            page:1
+            page:this.posts.current_page
         }
     },methods: {
         changePage:function(){

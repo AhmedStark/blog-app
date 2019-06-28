@@ -1996,6 +1996,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    response: {
+      "default": '',
+      type: String
+    }
+  },
   data: function data() {
     return {
       title: "",
@@ -2147,35 +2153,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     posts: {
-      type: Array,
+      type: Object,
       "default": function _default() {
-        return [{
-          title: "Abo",
-          content: "sdawgdv fbwgvjygfuab dhubwavgd dbwaghdvtyw dcbuwkadhjg sdbkjwaykhild",
-          date: "2018-1-1"
-        }, {
-          title: "Abo",
-          content: "sssssssssssssssssssssssssssssssssssssssssssssssssss",
-          date: "2018-1-1"
-        }, {
-          title: "Abo",
-          content: "sssssssssssssssssssssssssssssssssssssssssssssssssss",
-          date: "2018-1-1"
-        }, {
-          title: "Abo",
-          content: "sssssssssssssssssssssssssssssssssssssssssssssssssss",
-          date: "2018-1-1"
-        }, {
-          title: "Abo",
-          content: "sssssssssssssssssssssssssssssssssssssssssssssssssss",
-          date: "2018-1-1"
-        }];
+        return {};
       }
     }
   },
   data: function data() {
     return {
-      page: 1
+      page: this.posts.current_page
     };
   },
   methods: {
@@ -2333,6 +2319,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
+    id: {
+      "default": "",
+      type: String
+    },
     title: {
       "default": "",
       type: String
@@ -2345,6 +2335,11 @@ __webpack_require__.r(__webpack_exports__);
       "default": "",
       type: String
     }
+  },
+  data: function data() {
+    return {
+      read_more: " "
+    };
   }
 });
 
@@ -6883,7 +6878,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.read-more-link[data-v-5e8280ea]{\n    text-decoration:none\n}\n.content-wrap[data-v-5e8280ea]{\n    word-wrap:break-word;\n}\n", ""]);
+exports.push([module.i, "\n.read-more-link[data-v-5e8280ea]{\n    text-decoration:none\n}\n.content-wrap[data-v-5e8280ea]{\n    word-wrap:break-word;\n    display: inline-block;\n}\n", ""]);
 
 // exports
 
@@ -38780,6 +38775,8 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("v-card-text", [
+                _c("p", { domProps: { innerHTML: _vm._s(_vm.response) } }),
+                _vm._v(" "),
                 _c(
                   "form",
                   {
@@ -39072,14 +39069,15 @@ var render = function() {
                   _c(
                     "v-flex",
                     { attrs: { "offset-md2": "", md8: "" } },
-                    _vm._l(_vm.posts, function(post, index) {
+                    _vm._l(_vm.posts.data, function(post, index) {
                       return _c("post", {
                         key: index,
                         staticClass: "ma-2",
                         attrs: {
                           title: post.title,
+                          id: post._id,
                           content: post.content,
-                          date: post.date
+                          date: post.created_at
                         }
                       })
                     }),
@@ -39096,7 +39094,7 @@ var render = function() {
                           { staticClass: "text-xs-center" },
                           [
                             _c("v-pagination", {
-                              attrs: { length: 6 },
+                              attrs: { length: _vm.posts.last_page },
                               on: { input: _vm.changePage },
                               model: {
                                 value: _vm.page,
@@ -39430,10 +39428,17 @@ var render = function() {
           _c("v-divider", { staticClass: "mx-2" }),
           _vm._v(" "),
           _c("v-card-text", { staticClass: "subheading content-wrap" }, [
-            _vm._v(_vm._s(_vm.content) + " "),
+            _c("div", {
+              staticClass: "content-wrap",
+              domProps: { innerHTML: _vm._s(_vm.content) }
+            }),
+            _vm._v(" "),
             _c(
               "a",
-              { staticClass: "mr-4 mb-2 read-more-link", attrs: { href: "#" } },
+              {
+                staticClass: "mr-4 mb-2 read-more-link",
+                attrs: { href: "/post/" + _vm.id }
+              },
               [_vm._v("read more")]
             )
           ]),

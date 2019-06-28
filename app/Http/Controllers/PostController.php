@@ -9,6 +9,9 @@ use App\Social;
 class PostController extends Controller
 {
     public function store(Request $request){
+        if(empty($request->title)||empty($request->content)){
+            return redirect()->back()->with(['response'=>'<p class="red--text">You left one of the fields empty</p>','empty'=>true]);
+        }
 
         $post = new Post;
         $post->title = $request->title;
@@ -16,6 +19,7 @@ class PostController extends Controller
         $post->created_at = Carbon::now();
         $post->updated_at = Carbon::now();
         $post->save();
+        return redirect('/')->with(['response'=>'posted!']);
     }
 
     public function createPostView(Request $request)
@@ -24,5 +28,11 @@ class PostController extends Controller
         return view('create-post')->with(['icons'=>$icons]);
     }
 
+
+    public function getPosts()
+    {
+        return view('main')->with(["icons"=>Social::all(),'posts'=>Post::paginate(6)]);
+        
+    }
 
 }

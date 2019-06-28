@@ -21,7 +21,5 @@ class SocialController extends Controller
         }
         return['response'=>'Update complete'];
     }
-    public function main(){
-        return view('main')->with(["icons"=>Social::all()]);
-    }
+    
 }

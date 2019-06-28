@@ -7,7 +7,7 @@
         <v-card-title class="display-1">Create post</v-card-title>
 
         <v-card-text>
-
+            <p v-html="response"></p>
             <form action="/store-post" method="post" ref='post_form'>
                 <v-layout  class="ma-3">
                     <v-flex md4>
@@ -56,6 +56,12 @@
 
 <script>
 export default {
+    props:{
+        response:{
+            default:'',
+            type:String
+        },
+    },
     data(){
         return{
             title:"",
