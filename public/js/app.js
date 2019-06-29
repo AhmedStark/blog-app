@@ -2041,11 +2041,62 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
+    update: {
+      "default": false,
+      type: Boolean
+    },
     response: {
       "default": '',
       type: String
+    },
+    post: {
+      "default": function _default() {
+        return {};
+      },
+      type: Object
     }
   },
   data: function data() {
@@ -2056,6 +2107,9 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
+    passToVueditor: function passToVueditor() {
+      this.$refs.editor.setContent(this.post.content);
+    },
     save: function save() {
       this.content = this.$refs.editor.getContent();
     },
@@ -2065,8 +2119,15 @@ __webpack_require__.r(__webpack_exports__);
       this.$refs.submit_confirm.open();
     },
     submitForm: function submitForm() {
-      this.$refs.post_form.submit();
+      if (this.update) {
+        this.$refs.update_form.submit();
+      } else {
+        this.$refs.post_form.submit();
+      }
     }
+  },
+  mounted: function mounted() {
+    this.passToVueditor();
   }
 });
 
@@ -2462,6 +2523,65 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     id: {
@@ -2489,7 +2609,14 @@ __webpack_require__.r(__webpack_exports__);
       csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
     };
   },
-  methods: {}
+  methods: {
+    submitForm: function submitForm() {
+      this.$refs.deleteForm.submit();
+    },
+    confirm: function confirm() {
+      this.$refs.submit_confirm.open();
+    }
+  }
 });
 
 /***/ }),
@@ -7065,7 +7192,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.content{\n    min-height: 600pt;\n}\n.raw{\n    height:500pt;\n}\n.comment-text{\n    margin-bottom: -10pt;\n}\n", ""]);
+exports.push([module.i, "\n.content{\n    min-height: 600pt;\n}\n.raw{\n    height:500pt;\n}\n.comment-text{\n    margin-bottom: -10pt;\n}\n.list-tile:hover{\n    color:white;\n    background: teal;\n    cursor: pointer;\n}\n", ""]);
 
 // exports
 
@@ -39061,99 +39188,211 @@ var render = function() {
                 _vm._v("Create post")
               ]),
               _vm._v(" "),
-              _c("v-card-text", [
-                _c("p", { domProps: { innerHTML: _vm._s(_vm.response) } }),
-                _vm._v(" "),
-                _c(
-                  "form",
-                  {
-                    ref: "post_form",
-                    attrs: { action: "/store-post", method: "post" }
-                  },
-                  [
-                    _c(
-                      "v-layout",
-                      { staticClass: "ma-3" },
-                      [
-                        _c(
-                          "v-flex",
-                          { attrs: { md4: "" } },
-                          [
-                            _c("v-text-field", {
-                              attrs: {
-                                name: "title",
-                                label: "Title",
-                                placeholder: "My awesome blog"
-                              }
-                            })
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c("v-spacer"),
-                        _vm._v(" "),
-                        _c(
-                          "v-flex",
-                          { attrs: { md2: "" } },
-                          [
-                            _c(
-                              "v-btn",
-                              {
-                                staticClass: "green",
-                                attrs: { dark: "", large: "" },
-                                on: { click: _vm.confirm }
-                              },
-                              [
-                                _vm._v(
-                                  "\n                            Publish \n                            "
-                                ),
-                                _c("v-icon", { staticClass: "ml-1" }, [
-                                  _vm._v("publish")
-                                ])
-                              ],
-                              1
-                            )
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "confirm",
-                          {
-                            ref: "submit_confirm",
-                            on: { confirmed: _vm.submitForm }
-                          },
-                          [
-                            _c(
-                              "div",
-                              { attrs: { slot: "content" }, slot: "content" },
-                              [
-                                _vm._v(
-                                  "\n                            Are you sure you want to publish this post?\n                        "
-                                )
-                              ]
-                            )
-                          ]
-                        )
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c("input", {
-                      attrs: { type: "hidden", name: "_token" },
-                      domProps: { value: _vm.csrf }
-                    }),
-                    _vm._v(" "),
-                    _c("input", {
-                      ref: "content",
-                      attrs: { type: "hidden", value: "", name: "content" }
-                    }),
-                    _vm._v(" "),
-                    _c("Vueditor", { ref: "editor", staticClass: "ma-3 raw" })
-                  ],
-                  1
-                )
-              ])
+              _c(
+                "v-card-text",
+                [
+                  _c("p", { domProps: { innerHTML: _vm._s(_vm.response) } }),
+                  _vm._v(" "),
+                  _vm.update
+                    ? _c(
+                        "form",
+                        {
+                          ref: "update_form",
+                          attrs: { action: "/post/update", method: "post" }
+                        },
+                        [
+                          _c(
+                            "v-layout",
+                            { staticClass: "ma-3" },
+                            [
+                              _c("input", {
+                                attrs: { type: "hidden", name: "post_id" },
+                                domProps: { value: _vm.post._id }
+                              }),
+                              _vm._v(" "),
+                              _c(
+                                "v-flex",
+                                { attrs: { md4: "" } },
+                                [
+                                  _c("v-text-field", {
+                                    attrs: {
+                                      name: "title",
+                                      label: "Title",
+                                      placeholder: "My awesome blog",
+                                      value: _vm.post.title
+                                    }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c("v-spacer"),
+                              _vm._v(" "),
+                              _c(
+                                "v-flex",
+                                { attrs: { md2: "" } },
+                                [
+                                  _c(
+                                    "v-btn",
+                                    {
+                                      staticClass: "green",
+                                      attrs: { dark: "", large: "" },
+                                      on: { click: _vm.confirm }
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                            Publish \n                            "
+                                      ),
+                                      _c("v-icon", { staticClass: "ml-1" }, [
+                                        _vm._v("Update")
+                                      ])
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "confirm",
+                                {
+                                  ref: "submit_confirm",
+                                  on: { confirmed: _vm.submitForm }
+                                },
+                                [
+                                  _c(
+                                    "div",
+                                    {
+                                      attrs: { slot: "content" },
+                                      slot: "content"
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                            Are you sure you want to update this post?\n                        "
+                                      )
+                                    ]
+                                  )
+                                ]
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c("input", {
+                            attrs: { type: "hidden", name: "_token" },
+                            domProps: { value: _vm.csrf }
+                          }),
+                          _vm._v(" "),
+                          _c("input", {
+                            ref: "content",
+                            attrs: {
+                              type: "hidden",
+                              value: "",
+                              name: "content"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    : _c(
+                        "form",
+                        {
+                          ref: "post_form",
+                          attrs: { action: "/store-post", method: "post" }
+                        },
+                        [
+                          _c(
+                            "v-layout",
+                            { staticClass: "ma-3" },
+                            [
+                              _c(
+                                "v-flex",
+                                { attrs: { md4: "" } },
+                                [
+                                  _c("v-text-field", {
+                                    attrs: {
+                                      name: "title",
+                                      label: "Title",
+                                      placeholder: "My awesome blog"
+                                    }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c("v-spacer"),
+                              _vm._v(" "),
+                              _c(
+                                "v-flex",
+                                { attrs: { md2: "" } },
+                                [
+                                  _c(
+                                    "v-btn",
+                                    {
+                                      staticClass: "green",
+                                      attrs: { dark: "", large: "" },
+                                      on: { click: _vm.confirm }
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                            Publish \n                            "
+                                      ),
+                                      _c("v-icon", { staticClass: "ml-1" }, [
+                                        _vm._v("publish")
+                                      ])
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "confirm",
+                                {
+                                  ref: "submit_confirm",
+                                  on: { confirmed: _vm.submitForm }
+                                },
+                                [
+                                  _c(
+                                    "div",
+                                    {
+                                      attrs: { slot: "content" },
+                                      slot: "content"
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                            Are you sure you want to publish this post?\n                        "
+                                      )
+                                    ]
+                                  )
+                                ]
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c("input", {
+                            attrs: { type: "hidden", name: "_token" },
+                            domProps: { value: _vm.csrf }
+                          }),
+                          _vm._v(" "),
+                          _c("input", {
+                            ref: "content",
+                            attrs: {
+                              type: "hidden",
+                              value: "",
+                              name: "content"
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                  _vm._v(" "),
+                  _c("Vueditor", { ref: "editor", staticClass: "ma-3 raw" })
+                ],
+                1
+              )
             ],
             1
           )
@@ -39779,9 +40018,156 @@ var render = function() {
           _c(
             "v-card",
             [
-              _c("v-card-title", { staticClass: "display-1" }, [
-                _vm._v(_vm._s(_vm.title))
-              ]),
+              _c(
+                "v-card-title",
+                { staticClass: "display-1" },
+                [
+                  _c(
+                    "v-layout",
+                    [
+                      _vm._v(
+                        "\n                " +
+                          _vm._s(_vm.title) +
+                          "   \n                \n                "
+                      ),
+                      _c("v-spacer"),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "text-xs-center" },
+                        [
+                          _c(
+                            "v-menu",
+                            {
+                              attrs: { "offset-y": "" },
+                              scopedSlots: _vm._u([
+                                {
+                                  key: "activator",
+                                  fn: function(ref) {
+                                    var on = ref.on
+                                    return [
+                                      _c(
+                                        "v-btn",
+                                        _vm._g(
+                                          {
+                                            attrs: {
+                                              color: "teal",
+                                              dark: "",
+                                              icon: ""
+                                            }
+                                          },
+                                          on
+                                        ),
+                                        [
+                                          _c("v-icon", [
+                                            _vm._v(
+                                              "\n                                settings\n                            "
+                                            )
+                                          ])
+                                        ],
+                                        1
+                                      )
+                                    ]
+                                  }
+                                }
+                              ])
+                            },
+                            [
+                              _vm._v(" "),
+                              _c(
+                                "v-list",
+                                { staticClass: "trans" },
+                                [
+                                  _c(
+                                    "v-list-tile",
+                                    {
+                                      staticClass: "list-tile",
+                                      attrs: { href: "/posts/edit/" + _vm.id }
+                                    },
+                                    [
+                                      _c("v-list-tile-title", [
+                                        _vm._v(
+                                          "\n                                    Edit\n                                "
+                                        )
+                                      ])
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-list-tile",
+                                    {
+                                      staticClass: "list-tile",
+                                      on: { click: _vm.confirm }
+                                    },
+                                    [
+                                      _c("v-list-tile-title", [
+                                        _vm._v(
+                                          "\n                                    Delete\n                                "
+                                        )
+                                      ])
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "form",
+                                    {
+                                      ref: "deleteForm",
+                                      attrs: {
+                                        action: "/post/delete",
+                                        method: "post"
+                                      }
+                                    },
+                                    [
+                                      _c("input", {
+                                        attrs: { type: "hidden", name: "id" },
+                                        domProps: { value: _vm.id }
+                                      }),
+                                      _vm._v(" "),
+                                      _c("input", {
+                                        attrs: {
+                                          type: "hidden",
+                                          name: "_token"
+                                        },
+                                        domProps: { value: _vm.csrf }
+                                      })
+                                    ]
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "confirm",
+                        {
+                          ref: "submit_confirm",
+                          on: { confirmed: _vm.submitForm }
+                        },
+                        [
+                          _c(
+                            "div",
+                            { attrs: { slot: "content" }, slot: "content" },
+                            [
+                              _vm._v(
+                                "\n                        Are you sure you want to delete this post?\n                    "
+                              )
+                            ]
+                          )
+                        ]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
               _vm._v(" "),
               _c(
                 "v-card-text",
@@ -39802,6 +40188,10 @@ var render = function() {
                     ],
                     1
                   ),
+                  _vm._v(" "),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("br"),
                   _vm._v(" "),
                   _c("h1", { staticClass: "title" }, [
                     _vm._v(_vm._s(_vm.comments.length) + " Comments")
@@ -39873,6 +40263,7 @@ var render = function() {
                       _vm._l(_vm.comments, function(comment) {
                         return _c("comment", {
                           key: comment.id,
+                          staticClass: "mb-4",
                           attrs: {
                             "user-name": comment.user_name,
                             comment: comment.comment,

@@ -32,6 +32,12 @@ class PostController extends Controller
     }
 
 
+    public function ShowEdit($id)
+    {
+        $post=Post::find($id);
+        return view("update-post")->with(['post'=>$post,'update'=>true,'icons'=>Social::all()]);
+    }
+
     public function getPosts()
     {
         return view('main')->with(["icons"=>Social::all(),'posts'=>Post::paginate(6)]);
@@ -55,6 +61,33 @@ class PostController extends Controller
 
         return view('post-404');
         
+    }
+
+    public function update(Request $request)
+    {
+
+        if(empty($request->title)||empty($request->content)){
+            return redirect()->back()->with(['response'=>'<p class="red--text">You left one of the fields empty</p>','empty'=>true]);
+        }elseif(empty($request->post_id)){
+            return redirect()->back()->with(['response'=>'<p class="red--text">Something wrong happened</p>','empty'=>true]);
+        }
+
+        $post=Post::find($request->post_id);
+        $post->title=$request->title;
+        $post->content = $request->content;
+        $post->save();
+        return redirect('/posts/'.$post->id);
+    }
+
+    public function delete(Request $request)
+    {
+        if(empty($request->id)){
+            return redirect()->back()->with(['response'=>'<p class="red--text">Something wrong happened</p>']);
+        }
+        
+        $post=Post::find($request->id);
+        $post->delete();
+        return redirect("/")->with(['response'=>'Post deleted']);
     }
 
 }

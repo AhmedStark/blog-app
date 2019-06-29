@@ -33,3 +33,9 @@ Route::post('/store-post', 'PostController@store');
 Route::post('/comment', 'CommentController@comment');
 
 Route::get('/posts/{id}', 'PostController@showPost');
+
+Route::get('/posts/edit/{id}', 'PostController@ShowEdit');
+
+Route::post('/post/update','PostController@update');
+
+Route::post('/post/delete','PostController@delete');

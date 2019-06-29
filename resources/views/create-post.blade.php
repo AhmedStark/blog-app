@@ -5,4 +5,5 @@
 @else
     <create-post-form ></create-post-form>
 @endif
+
 @endSection

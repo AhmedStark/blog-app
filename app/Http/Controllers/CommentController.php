@@ -11,7 +11,7 @@ class CommentController extends Controller
     public function comment(Request $request)
     {
         if(empty($request->comment)||empty($request->post_id)){
-            return $request;//redirect()->back()->with(['response'=>'<p class="red--text">You left one of the fields empty</p>','empty'=>true]);
+            return redirect()->back()->with(['response'=>'<p class="red--text">You left one of the fields empty</p>','empty'=>true]);
         }
 
         $comment = new Comment;
@@ -20,6 +20,6 @@ class CommentController extends Controller
         $comment->user_id = Sentinel::getUser()->id;
         
         $comment->save();
-        return redirect('/')->with(['response'=>'posted!']);
+        return redirect()->back()->with(['response'=>'posted!']);
     }
 }
