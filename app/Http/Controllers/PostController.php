@@ -22,7 +22,7 @@ class PostController extends Controller
         $post->created_at = Carbon::now();
         $post->updated_at = Carbon::now();
         $post->save();
-        return redirect('/')->with(['response'=>'posted!']);
+        return redirect('/')->with(['response'=>'posted!','snackbar'=>'Post updated ..!']);
     }
 
     public function createPostView(Request $request)
@@ -76,7 +76,7 @@ class PostController extends Controller
         $post->title=$request->title;
         $post->content = $request->content;
         $post->save();
-        return redirect('/posts/'.$post->id);
+        return redirect('/posts/'.$post->id)->with(['snackbar'=>'Post updated ..!']);
     }
 
     public function delete(Request $request)
@@ -87,7 +87,7 @@ class PostController extends Controller
         
         $post=Post::find($request->id);
         $post->delete();
-        return redirect("/")->with(['response'=>'Post deleted']);
+        return redirect("/")->with(['snackbar'=>'Post deleted ..!']);
     }
 
 }

@@ -2259,6 +2259,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
+    snackbarStatus: {
+      "default": false,
+      type: Boolean
+    },
+    snackbarPassedContent: {
+      type: String,
+      "default": ""
+    },
     posts: {
       type: Object,
       "default": function _default() {
@@ -2268,6 +2276,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      snackbar: this.snackbarStatus,
+      snackbarContent: this.snackbarPassedContent,
       page: this.posts.current_page
     };
   },
@@ -2582,8 +2592,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
+    snackbarStatus: {
+      "default": false,
+      type: Boolean
+    },
+    snackbarPassedContent: {
+      type: String,
+      "default": ""
+    },
     id: {
       "default": '',
       type: String
@@ -2605,6 +2625,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      snackbar: this.snackbarStatus,
+      snackbarContent: this.snackbarPassedContent,
       comment: "",
       csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
     };
@@ -39566,6 +39588,36 @@ var render = function() {
                 "v-layout",
                 [
                   _c(
+                    "v-snackbar",
+                    {
+                      attrs: { top: "", timeout: 3000 },
+                      model: {
+                        value: _vm.snackbar,
+                        callback: function($$v) {
+                          _vm.snackbar = $$v
+                        },
+                        expression: "snackbar"
+                      }
+                    },
+                    [
+                      _vm._v(_vm._s(_vm.snackbarContent)),
+                      _c(
+                        "v-btn",
+                        {
+                          attrs: { dark: "", flat: "", color: "red" },
+                          on: {
+                            click: function($event) {
+                              _vm.snackbar = false
+                            }
+                          }
+                        },
+                        [_vm._v("Close")]
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
                     "v-flex",
                     { attrs: { "offset-md2": "", md8: "" } },
                     [
@@ -40015,6 +40067,36 @@ var render = function() {
       _c(
         "v-container",
         [
+          _c(
+            "v-snackbar",
+            {
+              attrs: { top: "", timeout: 3000 },
+              model: {
+                value: _vm.snackbar,
+                callback: function($$v) {
+                  _vm.snackbar = $$v
+                },
+                expression: "snackbar"
+              }
+            },
+            [
+              _vm._v(_vm._s(_vm.snackbarContent)),
+              _c(
+                "v-btn",
+                {
+                  attrs: { dark: "", flat: "", color: "red" },
+                  on: {
+                    click: function($event) {
+                      _vm.snackbar = false
+                    }
+                  }
+                },
+                [_vm._v("Close")]
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
           _c(
             "v-card",
             [

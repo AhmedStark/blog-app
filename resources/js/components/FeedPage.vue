@@ -3,7 +3,7 @@
         <v-container >
         <v-card>
         <v-layout>
-
+        <v-snackbar v-model="snackbar" top :timeout="3000" >{{ snackbarContent }}<v-btn dark flat  color="red" @click="snackbar = false">Close</v-btn> </v-snackbar>
         <v-flex offset-md2 md8 >
             <v-btn class="purple"  dark href="/admin/create-post">Add new post <v-icon>add</v-icon></v-btn>
             </v-flex>
@@ -38,6 +38,10 @@
 <script>
 export default {
     props:{
+        snackbarStatus:{default:false,type:Boolean},
+        snackbarPassedContent:{
+            type:String,default:""
+        },
         posts:{
             type:Object,
             default:function(){
@@ -46,6 +50,8 @@ export default {
     }   
     },data(){
         return{
+            snackbar:this.snackbarStatus,
+            snackbarContent:this.snackbarPassedContent,
             page:this.posts.current_page
         }
     },methods: {

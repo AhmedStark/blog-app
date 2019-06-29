@@ -1,6 +1,8 @@
 <template>
 <div>
 <v-container>
+    
+    <v-snackbar v-model="snackbar" top :timeout="3000" >{{ snackbarContent }}<v-btn dark flat  color="red" @click="snackbar = false">Close</v-btn> </v-snackbar>
 
     <v-card>
 
@@ -122,6 +124,10 @@
 <script>
 export default {
     props:{
+        snackbarStatus:{default:false,type:Boolean},
+        snackbarPassedContent:{
+            type:String,default:""
+        },
         id:{
             default:'',
             type:String
@@ -142,7 +148,8 @@ export default {
     },
     data(){
         return{
-            
+            snackbar:this.snackbarStatus,
+            snackbarContent:this.snackbarPassedContent,
             comment:"",
             
             csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
@@ -155,7 +162,7 @@ export default {
             
             this.$refs.submit_confirm.open();
         }
-    }
+    },
 }
 </script>
 <style scope>
