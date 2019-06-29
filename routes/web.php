@@ -11,14 +11,14 @@
 |
 */
 
-Route::get('/login', 'UserController@login');
+Route::post('/login', 'UserController@login');
+Route::get('/login', 'UserController@loginView');
+
 Route::get('/', 'PostController@getPosts');
 
 Route::get('/admin/create-post', 'PostController@CreatePostView');
 
-Route::get('/signup', function () {
-    return view('create-user');
-});
+Route::get('/signup', 'UserController@signupView');
 
 
 Route::post('/logout', 'UserController@logout');
@@ -29,3 +29,7 @@ Route::post('/signup', 'UserController@signup');
 Route::post('/first-login', 'UserController@firstLogin');
 
 Route::post('/store-post', 'PostController@store');
+
+Route::post('/comment', 'CommentController@comment');
+
+Route::get('/posts/{id}', 'PostController@showPost');

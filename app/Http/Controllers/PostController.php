@@ -6,6 +6,9 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Post;
 use App\Social;
+use App\Comment;
+use App\User;
+
 class PostController extends Controller
 {
     public function store(Request $request){
@@ -32,6 +35,25 @@ class PostController extends Controller
     public function getPosts()
     {
         return view('main')->with(["icons"=>Social::all(),'posts'=>Post::paginate(6)]);
+        
+    }
+
+    public function showPost($id)
+    {
+        if (Post::find($id)!=null){
+            $icons=Social::all();
+            $post = Post::find($id);
+            $comments = $post->comments()->get();
+
+            for($i=0;$i<count($comments);$i++){
+                $userID=$comments[$i]['user_id'];
+                $userName = User::find($userID);
+                $comments[$i]['user_name']=$userName->name;
+            }
+            return view('post-page')->with(['post'=>Post::find($id),'icons'=>$icons,'comments'=>$comments]);
+        }
+
+        return view('post-404');
         
     }
 

@@ -8,6 +8,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
+    protected $connection = "mysql";
+    public function comments(){
+        return $this->hasMany(Comment::class);
+    }
+    
     use Notifiable;
 
     /**

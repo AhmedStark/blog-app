@@ -70,7 +70,7 @@ class MakeAdminCommand extends Command
         
         if($request['password']!==$request['r_password']){
             $this->warn('Password does not match....');
-        }elseif (strlen($request['password']<slef::MIN_PASS)){
+        }elseif (strlen($request['password']<self::MIN_PASS)){
             $this->warn('Password has to be more than 6 letters');
         }elseif ($validRequest->fails()){
             $this->warn('Password must be of 6 characters or more.');

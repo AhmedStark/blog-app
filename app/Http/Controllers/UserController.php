@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Sentinel;
 use Illuminate\Http\Request;
 use Validator;
+use App\Social;
 
 
 class UserController extends Controller
@@ -31,7 +32,7 @@ class UserController extends Controller
 
 
         $validRequest = Validator::make($request->all(),$emptyValidation);
-        $emailValidation = array('email' => 'unique:users|email|required'  );
+        $emailValidation = array('email' => 'email|required'  );
         $validEmail = Validator::make($request->all(),$emailValidation);
 
         if($validEmail->fails()){
@@ -91,6 +92,8 @@ class UserController extends Controller
             $user = Sentinel::registerAndActivate($credentials);
             $role = Sentinel::findRoleBySlug('viewer');
             $role->users()->attach($user);
+            $user->name= $request->name;
+            $user->save();
             $this->firstLogin($request->all());
         }
 
@@ -108,6 +111,14 @@ class UserController extends Controller
         Sentinel::authenticate($credentials);
         return ['response'=>'Welcome dude'];
     }
+    public function loginView()
+    {
+        return view('login')->with(['icons'=>Social::all()]);
+    }
 
+    public function signupView()
+    {
+        return view('create-user')->with(['icons'=>Social::all()]);
+    }
 
 }
