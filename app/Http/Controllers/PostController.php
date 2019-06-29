@@ -40,7 +40,7 @@ class PostController extends Controller
 
     public function getPosts()
     {
-        return view('main')->with(["icons"=>Social::all(),'posts'=>Post::paginate(6)]);
+        return view('main')->with(["icons"=>Social::all(),'posts'=>Post::orderBy("created_at","desc")->paginate(6)]);
         
     }
 

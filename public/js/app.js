@@ -2434,6 +2434,30 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     id: {
@@ -2455,8 +2479,20 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
       read_more: " "
     };
+  },
+  methods: {
+    submitForm: function submitForm() {
+      this.$refs.deleteForm.submit();
+    },
+    edit: function edit() {
+      window.location = '/posts/edit/' + id;
+    },
+    confirm: function confirm() {
+      this.$refs.submit_confirm.open();
+    }
   }
 });
 
@@ -40003,23 +40039,75 @@ var render = function() {
             _vm._v(_vm._s(_vm.title))
           ]),
           _vm._v(" "),
+          _c(
+            "form",
+            {
+              ref: "deleteForm",
+              attrs: { action: "/post/delete", method: "post" }
+            },
+            [
+              _c("input", {
+                attrs: { type: "hidden", name: "id" },
+                domProps: { value: _vm.id }
+              }),
+              _vm._v(" "),
+              _c("input", {
+                attrs: { type: "hidden", name: "_token" },
+                domProps: { value: _vm.csrf }
+              })
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "ml-4" },
+            [
+              _c(
+                "v-btn",
+                { attrs: { icon: "", href: "/posts/edit/" + _vm.id } },
+                [_c("v-icon", [_vm._v("edit")])],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-btn",
+                { attrs: { icon: "" }, on: { click: _vm.confirm } },
+                [_c("v-icon", { attrs: { color: "red" } }, [_vm._v("delete")])],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
           _c("v-divider", { staticClass: "mx-2" }),
           _vm._v(" "),
           _c("v-card-text", { staticClass: "subheading content-wrap" }, [
             _c("div", {
               staticClass: "content-wrap",
-              domProps: { innerHTML: _vm._s(_vm.content) }
+              domProps: { innerHTML: _vm._s(_vm.content.slice(0, 150)) }
             }),
-            _vm._v(" "),
+            _vm._v(" ...\n        "),
             _c(
               "a",
               {
                 staticClass: "mr-4 mb-2 read-more-link",
                 attrs: { href: "/posts/" + _vm.id }
               },
-              [_vm._v("read more")]
+              [_vm._v("\n            open\n        ")]
             )
           ]),
+          _vm._v(" "),
+          _c(
+            "confirm",
+            { ref: "submit_confirm", on: { confirmed: _vm.submitForm } },
+            [
+              _c("div", { attrs: { slot: "content" }, slot: "content" }, [
+                _vm._v(
+                  "\n                    Are you sure you want to delete this post?\n                "
+                )
+              ])
+            ]
+          ),
           _vm._v(" "),
           _c(
             "v-layout",
