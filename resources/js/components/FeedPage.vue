@@ -1,6 +1,5 @@
 <template>
-    <v-app color="grey lighten-4">
-        <v-container >
+    
         <v-card>
         <v-layout>
         <v-snackbar v-model="snackbar" top :timeout="3000" >{{ snackbarContent }}<v-btn dark flat  color="red" @click="snackbar = false">Close</v-btn> </v-snackbar>
@@ -32,8 +31,6 @@
             <v-icon dark>add</v-icon>
         </v-btn>
         </v-card>
-        </v-container>
-    </v-app>
 </template>
 <script>
 export default {

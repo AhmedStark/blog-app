@@ -24,6 +24,7 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "vue-cookie": "^1.1.4",
         "vueditor": "^0.3.1",
         "vuetify": "^1.5.16",
         "vuex": "^3.1.1"

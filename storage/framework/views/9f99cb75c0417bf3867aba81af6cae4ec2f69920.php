@@ -18,19 +18,12 @@
         </head>
         <body>
         <div id='app'>
-        <v-app >
+        <main-template 
             <?php if($user = Sentinel::check()): ?>
-                <nav-bar checklogin>
+                 checklogin
                 
-                </nav-bar>
-            <?php else: ?>
-                <nav-bar >
-                
-                </nav-bar>
             <?php endif; ?>
-            <?php echo $__env->yieldContent("content"); ?>
-
-            <app-footer
+            
             <?php if(Sentinel::getUser() !== null): ?>
 
                 <?php if(Sentinel::getUser()->inRole("admin")): ?>
@@ -38,8 +31,14 @@
                 <?php endif; ?>
 
             <?php endif; ?>
-             :icons="<?php echo e($icons); ?>"></app-footer>
-        </v-app>
+            :icons="<?php echo e(json_encode($icons)); ?>">
+            <div slot="content">
+
+                <?php echo $__env->yieldContent("content"); ?>
+
+            </div>
+            
+        </main-template>
                  
         </div>
 

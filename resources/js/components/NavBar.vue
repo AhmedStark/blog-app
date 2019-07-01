@@ -15,11 +15,19 @@
       </v-btn>
 
     </v-toolbar-items>
+    <v-btn flat icon @click="changeMode">
+      <v-icon v-if="darkMode" dark falt>
+        wb_sunny
+      </v-icon>
+      <v-icon v-else  dark falt>
+        brightness_3
+      </v-icon>
     
+    </v-btn>
     <v-menu v-if="checklogin" offset-y>
       <template v-slot:activator="{ on }">
-        <v-btn fab
-          color="teal darken-1"
+        <v-btn icon
+          flat
           dark
           v-on="on"
         >
@@ -46,7 +54,11 @@
   <br>
   </div>
 </template>
+
 <script>
+
+var VueCookie = require('vue-cookie');
+
 export default {
     props:{
         checklogin:{
@@ -61,8 +73,14 @@ export default {
     data(){
       return{
         csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-
+        darkMode:VueCookie.get("dark_mode")=="on",
           }
-    },
+    },methods:{
+      changeMode:function(){
+          VueCookie.get("dark_mode")=="on" ? VueCookie.set('dark_mode', 'off'):VueCookie.set("dark_mode","on");
+          this.$emit('changeMode');
+          this.darkMode=!this.darkMode;
+        }
+    }
 }
 </script>

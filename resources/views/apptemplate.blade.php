@@ -18,19 +18,12 @@
         </head>
         <body>
         <div id='app'>
-        <v-app >
+        <main-template 
             @if($user = Sentinel::check())
-                <nav-bar checklogin>
+                 checklogin
                 
-                </nav-bar>
-            @else
-                <nav-bar >
-                
-                </nav-bar>
             @endif
-            @yield("content")
-
-            <app-footer
+            
             @if(Sentinel::getUser() !== null)
 
                 @if(Sentinel::getUser()->inRole("admin"))
@@ -38,8 +31,14 @@
                 @endif
 
             @endif
-             :icons="{{$icons}}"></app-footer>
-        </v-app>
+            :icons="{{json_encode($icons)}}">
+            <div slot="content">
+
+                @yield("content")
+
+            </div>
+            
+        </main-template>
                  
         </div>
 
