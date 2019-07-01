@@ -25,25 +25,27 @@ class UserController extends Controller
 
         
         $emptyValidation=[
-            'email' => "required|max:".self::MAX_EMAIL,
-            'password' => "required|min:".self::MIN_PASS."|max:".self::MAX_PASS,
+            'email' => "required",
+            'pwd' => "required",
 
         ];
-
 
         $validRequest = Validator::make($request->all(),$emptyValidation);
         $emailValidation = array('email' => 'email|required'  );
         $validEmail = Validator::make($request->all(),$emailValidation);
 
         if($validEmail->fails()){
-            return ['response'=>'The email is not valid.'];
+            return redirect('/login')->with(['response'=>'The email is not valid.']);
         }
 
         elseif ($validRequest->fails()){
-            return['response'=>'Password must be of 6 characters or more.'];
+            return redirect('/login')->with(['response'=>'One of the fields was empty']);
         }else{
+            if(!Sentinel::authenticate($credentials)){
+                return redirect('/login')->with(['response'=>'User email or password was not right.']);
+            }
             Sentinel::authenticate($credentials);
-            return redirect('');
+            return redirect('/');
         }
 
     }
@@ -73,21 +75,21 @@ class UserController extends Controller
 
 
         if(empty($request->name)){
-            return ['response'=>'You did not enter a name'];
+            return redirect('/signup')->with(['response'=>'You did not enter a name']);
         }
         $emailValidation = array('email' => 'unique:users|email|required'  );
         $validEmail = Validator::make($request->all(),$emailValidation);
 
         if($validEmail->fails()){
-            return ['response'=>'The email is not valid.'];
+            return redirect('/signup')->with(['response'=>'The email is not valid.']);
         }
 
         if($request->pwd !==$request->rpwd){
             return['response'=>'Password does not match....'];
         }elseif (strlen($request->pwd)<self::MIN_PASS){
-            return['response'=>"Password has to be more than 6 letters"];
+            return redirect('/signup')->with(['response'=>"Password has to be more than 6 letters"]);
         }elseif ($validRequest->fails()){
-            return['response'=>'Password must be of 6 characters or more.'];
+            return redirect('/signup')->with(['response'=>'Password must be of 6 characters or more.']);
         }else{
             $user = Sentinel::registerAndActivate($credentials);
             $role = Sentinel::findRoleBySlug('viewer');
@@ -109,7 +111,7 @@ class UserController extends Controller
         ];
 
         Sentinel::authenticate($credentials);
-        return ['response'=>'Welcome dude'];
+        return redirect('/')->with(['response'=>'Welcome dude']);
     }
     public function loginView()
     {

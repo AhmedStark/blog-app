@@ -2395,6 +2395,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     checklogin: {
@@ -39911,6 +39922,22 @@ var render = function() {
           _c("v-spacer"),
           _vm._v(" "),
           _vm.checklogin
+            ? _c(
+                "v-toolbar-items",
+                [
+                  _c("v-btn", { attrs: { flat: "", href: "/login" } }, [
+                    _vm._v("\n      Login\n    ")
+                  ]),
+                  _vm._v(" "),
+                  _c("v-btn", { attrs: { flat: "", href: "/signup" } }, [
+                    _vm._v("\n      Sign up\n    ")
+                  ])
+                ],
+                1
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          !_vm.checklogin
             ? _c(
                 "v-menu",
                 {

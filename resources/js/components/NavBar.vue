@@ -5,7 +5,18 @@
     <v-toolbar-title><a href="/"><b class="lime--text">My</b><b class="white--text">Blog</b></a></v-toolbar-title>
     <v-spacer></v-spacer>
     <v-spacer></v-spacer>
-    <v-menu v-if="checklogin" offset-y>
+    <v-toolbar-items v-if="checklogin">
+
+      <v-btn flat href='/login'>
+        Login
+      </v-btn>
+      <v-btn flat href="/signup">
+        Sign up
+      </v-btn>
+
+    </v-toolbar-items>
+    
+    <v-menu v-if="!checklogin" offset-y>
       <template v-slot:activator="{ on }">
         <v-btn fab
           color="teal darken-1"
