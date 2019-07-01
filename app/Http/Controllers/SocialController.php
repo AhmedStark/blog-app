@@ -19,7 +19,7 @@ class SocialController extends Controller
             Social::where('site',$i)->update(['link' => $links[$i]]);
             
         }
-        return['response'=>'Update complete'];
+        return redirect("/")->with(['response'=>'Update complete']);
     }
     
 }

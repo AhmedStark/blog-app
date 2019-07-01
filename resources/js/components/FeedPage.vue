@@ -5,13 +5,13 @@
         <v-layout>
         <v-snackbar v-model="snackbar" top :timeout="3000" >{{ snackbarContent }}<v-btn dark flat  color="red" @click="snackbar = false">Close</v-btn> </v-snackbar>
         <v-flex offset-md2 md8 >
-            <v-btn class="purple"  dark href="/admin/create-post">Add new post <v-icon>add</v-icon></v-btn>
+            <v-btn class="purple" v-if="admin" dark href="/admin/create-post">Add new post <v-icon>add</v-icon></v-btn>
             </v-flex>
         </v-layout>
         <v-layout wrap>
         
         <v-flex offset-md2 md8 >
-            <post class="ma-2" v-for="(post,index) in posts.data" :title="post.title" :id="post._id" :content="post.content" :date="post.created_at" :key="index"></post>
+            <post :admin="admin" class="ma-2" v-for="(post,index) in posts.data" :title="post.title" :id="post._id" :content="post.content" :date="post.created_at" :key="index"></post>
         </v-flex>
         
         <v-flex offset-md2 md8 >
@@ -38,6 +38,9 @@
 <script>
 export default {
     props:{
+        admin:{
+            type:Boolean,default:false
+        },
         snackbarStatus:{default:false,type:Boolean},
         snackbarPassedContent:{
             type:String,default:""

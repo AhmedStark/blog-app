@@ -19,11 +19,26 @@
         <body>
         <div id='app'>
         <v-app >
-            <nav-bar>
-            
-            </nav-bar>
+            <?php if($user = Sentinel::check()): ?>
+                <nav-bar checklogin>
+                
+                </nav-bar>
+            <?php else: ?>
+                <nav-bar >
+                
+                </nav-bar>
+            <?php endif; ?>
             <?php echo $__env->yieldContent("content"); ?>
-            <app-footer :icons="<?php echo e($icons); ?>"></app-footer>
+
+            <app-footer
+            <?php if(Sentinel::getUser() !== null): ?>
+
+                <?php if(Sentinel::getUser()->inRole("admin")): ?>
+                    admin
+                <?php endif; ?>
+
+            <?php endif; ?>
+             :icons="<?php echo e($icons); ?>"></app-footer>
         </v-app>
                  
         </div>

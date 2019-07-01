@@ -1,8 +1,26 @@
 @extends("apptemplate")
 @section("content")
-@if(session('snackbar')===null)
-    <feed-page :posts="{{json_encode($posts)}}"></feed-page>
-@else
-    <feed-page snackbar-passed-content="{{session('snackbar')}}" snackbar-status :posts="{{json_encode($posts)}}"></feed-page>
-@endIf
+
+
+
+
+<feed-page
+
+@if(Sentinel::getUser() !== null)
+
+    @if(Sentinel::getUser()->inRole("admin"))
+        admin
+    @endif
+
+@endif
+
+
+@if(session('snackbar')!==null)
+    snackbar-passed-content="{{session('snackbar')}}"
+    snackbar-status
+@endif
+
+:posts="{{json_encode($posts)}}"
+></feed-page>
+
 @endSection

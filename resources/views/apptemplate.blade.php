@@ -19,11 +19,26 @@
         <body>
         <div id='app'>
         <v-app >
-            <nav-bar>
-            
-            </nav-bar>
+            @if($user = Sentinel::check())
+                <nav-bar checklogin>
+                
+                </nav-bar>
+            @else
+                <nav-bar >
+                
+                </nav-bar>
+            @endif
             @yield("content")
-            <app-footer :icons="{{$icons}}"></app-footer>
+
+            <app-footer
+            @if(Sentinel::getUser() !== null)
+
+                @if(Sentinel::getUser()->inRole("admin"))
+                    admin
+                @endif
+
+            @endif
+             :icons="{{$icons}}"></app-footer>
         </v-app>
                  
         </div>

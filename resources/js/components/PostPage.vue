@@ -14,7 +14,7 @@
                 <v-spacer></v-spacer>
 
                 
-                    <div class="text-xs-center">
+                    <div class="text-xs-center" v-if="admin">
                         <v-menu offset-y>
                         <template v-slot:activator="{ on }">
                             <v-btn
@@ -82,7 +82,8 @@
         <br>
         <br>
             <h1 class="title">{{comments.length}} Comments</h1>
-        <form action="/comment" method='post' id='comment-form'>
+            <v-btn v-if="!checklogin" color="purple" dark href="/login">Login to comment</v-btn>
+        <form action="/comment" method='post' id='comment-form' v-if="checklogin">
 
             <input type="hidden" name="_token" :value="csrf" />
             
@@ -125,6 +126,8 @@
 export default {
     props:{
         snackbarStatus:{default:false,type:Boolean},
+        admin:{default:false,type:Boolean},
+        checklogin:{default:false,type:Boolean},
         snackbarPassedContent:{
             type:String,default:""
         },
@@ -151,7 +154,6 @@ export default {
             snackbar:this.snackbarStatus,
             snackbarContent:this.snackbarPassedContent,
             comment:"",
-            
             csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
         }
     },methods:{

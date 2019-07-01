@@ -1,5 +1,12 @@
 @extends("apptemplate")
 @section("content")
 <br>
-<create-user-form></create-user-form>
+
+@if(session('response')!==null)
+
+    <create-user-form response="{{session('response')}}"></create-user-form>
+@else
+    <create-user-form></create-user-form>
+
+@endif
 @endSection

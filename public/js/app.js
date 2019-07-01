@@ -1824,6 +1824,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     admin: {
@@ -2259,6 +2268,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
+    admin: {
+      type: Boolean,
+      "default": false
+    },
     snackbarStatus: {
       "default": false,
       type: Boolean
@@ -2409,7 +2422,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     checklogin: {
-      "default": true,
+      "default": false,
       type: Boolean
     },
     name: {
@@ -2471,6 +2484,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
+    admin: {
+      "default": false,
+      type: Boolean
+    },
     id: {
       "default": "",
       type: String
@@ -2641,9 +2658,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     snackbarStatus: {
+      "default": false,
+      type: Boolean
+    },
+    admin: {
+      "default": false,
+      type: Boolean
+    },
+    checklogin: {
       "default": false,
       type: Boolean
     },
@@ -38888,50 +38914,62 @@ var render = function() {
                       fn: function(ref) {
                         var on = ref.on
                         return [
-                          _vm._l(_vm.icons, function(icon) {
-                            return _vm.admin
-                              ? _c(
-                                  "v-btn",
-                                  _vm._g(
+                          _vm.admin
+                            ? _c(
+                                "dir",
+                                _vm._l(_vm.icons, function(icon) {
+                                  return _c(
+                                    "v-btn",
+                                    _vm._g(
+                                      {
+                                        key: icon.id,
+                                        staticClass: "mx-3",
+                                        attrs: { dark: "", icon: "" }
+                                      },
+                                      on
+                                    ),
+                                    [
+                                      _c(
+                                        "v-icon",
+                                        { attrs: { size: "24px" } },
+                                        [_vm._v(_vm._s(icon.icon))]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                }),
+                                1
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          !_vm.admin
+                            ? _c(
+                                "div",
+                                _vm._l(_vm.icons, function(icon) {
+                                  return _c(
+                                    "v-btn",
                                     {
                                       key: icon.id,
                                       staticClass: "mx-3",
-                                      attrs: { dark: "", icon: "" }
+                                      attrs: {
+                                        href: icon.link,
+                                        dark: "",
+                                        icon: ""
+                                      }
                                     },
-                                    on
-                                  ),
-                                  [
-                                    _c("v-icon", { attrs: { size: "24px" } }, [
-                                      _vm._v(_vm._s(icon.icon))
-                                    ])
-                                  ],
-                                  1
-                                )
-                              : _vm._e()
-                          }),
-                          _vm._v(" "),
-                          _vm._l(_vm.icons, function(icon) {
-                            return !_vm.admin
-                              ? _c(
-                                  "v-btn",
-                                  {
-                                    key: icon.id,
-                                    staticClass: "mx-3",
-                                    attrs: {
-                                      href: icon.link,
-                                      dark: "",
-                                      icon: ""
-                                    }
-                                  },
-                                  [
-                                    _c("v-icon", { attrs: { size: "24px" } }, [
-                                      _vm._v(_vm._s(icon.icon))
-                                    ])
-                                  ],
-                                  1
-                                )
-                              : _vm._e()
-                          })
+                                    [
+                                      _c(
+                                        "v-icon",
+                                        { attrs: { size: "24px" } },
+                                        [_vm._v(_vm._s(icon.icon))]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                }),
+                                1
+                              )
+                            : _vm._e()
                         ]
                       }
                     }
@@ -38983,7 +39021,8 @@ var render = function() {
                               attrs: {
                                 name: "facebook",
                                 label: "Facebook link",
-                                required: ""
+                                required: "",
+                                value: _vm.icons[0].link
                               }
                             }),
                             _vm._v(" "),
@@ -38992,7 +39031,8 @@ var render = function() {
                               attrs: {
                                 name: "twitter",
                                 label: "Twitter link",
-                                required: ""
+                                required: "",
+                                value: _vm.icons[1].link
                               }
                             }),
                             _vm._v(" "),
@@ -39001,7 +39041,8 @@ var render = function() {
                               attrs: {
                                 name: "linkedin",
                                 label: "LinkedIn link",
-                                required: ""
+                                required: "",
+                                value: _vm.icons[2].link
                               }
                             }),
                             _vm._v(" "),
@@ -39009,6 +39050,7 @@ var render = function() {
                               staticClass: "mx-4",
                               attrs: {
                                 name: "insta",
+                                value: _vm.icons[3].link,
                                 label: "Instagram link",
                                 required: ""
                               }
@@ -39668,18 +39710,20 @@ var render = function() {
                     "v-flex",
                     { attrs: { "offset-md2": "", md8: "" } },
                     [
-                      _c(
-                        "v-btn",
-                        {
-                          staticClass: "purple",
-                          attrs: { dark: "", href: "/admin/create-post" }
-                        },
-                        [
-                          _vm._v("Add new post "),
-                          _c("v-icon", [_vm._v("add")])
-                        ],
-                        1
-                      )
+                      _vm.admin
+                        ? _c(
+                            "v-btn",
+                            {
+                              staticClass: "purple",
+                              attrs: { dark: "", href: "/admin/create-post" }
+                            },
+                            [
+                              _vm._v("Add new post "),
+                              _c("v-icon", [_vm._v("add")])
+                            ],
+                            1
+                          )
+                        : _vm._e()
                     ],
                     1
                   )
@@ -39699,6 +39743,7 @@ var render = function() {
                         key: index,
                         staticClass: "ma-2",
                         attrs: {
+                          admin: _vm.admin,
                           title: post.title,
                           id: post._id,
                           content: post.content,
@@ -39921,7 +39966,7 @@ var render = function() {
           _vm._v(" "),
           _c("v-spacer"),
           _vm._v(" "),
-          _vm.checklogin
+          !_vm.checklogin
             ? _c(
                 "v-toolbar-items",
                 [
@@ -39937,7 +39982,7 @@ var render = function() {
               )
             : _vm._e(),
           _vm._v(" "),
-          !_vm.checklogin
+          _vm.checklogin
             ? _c(
                 "v-menu",
                 {
@@ -40085,26 +40130,32 @@ var render = function() {
             ]
           ),
           _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "ml-4" },
-            [
-              _c(
-                "v-btn",
-                { attrs: { icon: "", href: "/posts/edit/" + _vm.id } },
-                [_c("v-icon", [_vm._v("edit")])],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-btn",
-                { attrs: { icon: "" }, on: { click: _vm.confirm } },
-                [_c("v-icon", { attrs: { color: "red" } }, [_vm._v("delete")])],
+          _vm.admin
+            ? _c(
+                "div",
+                { staticClass: "ml-4" },
+                [
+                  _c(
+                    "v-btn",
+                    { attrs: { icon: "", href: "/posts/edit/" + _vm.id } },
+                    [_c("v-icon", [_vm._v("edit")])],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    { attrs: { icon: "" }, on: { click: _vm.confirm } },
+                    [
+                      _c("v-icon", { attrs: { color: "red" } }, [
+                        _vm._v("delete")
+                      ])
+                    ],
+                    1
+                  )
+                ],
                 1
               )
-            ],
-            1
-          ),
+            : _vm._e(),
           _vm._v(" "),
           _c("v-divider", { staticClass: "mx-2" }),
           _vm._v(" "),
@@ -40229,107 +40280,121 @@ var render = function() {
                       ),
                       _c("v-spacer"),
                       _vm._v(" "),
-                      _c(
-                        "div",
-                        { staticClass: "text-xs-center" },
-                        [
-                          _c(
-                            "v-menu",
-                            {
-                              attrs: { "offset-y": "" },
-                              scopedSlots: _vm._u([
+                      _vm.admin
+                        ? _c(
+                            "div",
+                            { staticClass: "text-xs-center" },
+                            [
+                              _c(
+                                "v-menu",
                                 {
-                                  key: "activator",
-                                  fn: function(ref) {
-                                    var on = ref.on
-                                    return [
+                                  attrs: { "offset-y": "" },
+                                  scopedSlots: _vm._u(
+                                    [
+                                      {
+                                        key: "activator",
+                                        fn: function(ref) {
+                                          var on = ref.on
+                                          return [
+                                            _c(
+                                              "v-btn",
+                                              _vm._g(
+                                                {
+                                                  attrs: {
+                                                    color: "teal",
+                                                    dark: "",
+                                                    icon: ""
+                                                  }
+                                                },
+                                                on
+                                              ),
+                                              [
+                                                _c("v-icon", [
+                                                  _vm._v(
+                                                    "\n                                settings\n                            "
+                                                  )
+                                                ])
+                                              ],
+                                              1
+                                            )
+                                          ]
+                                        }
+                                      }
+                                    ],
+                                    null,
+                                    false,
+                                    1064347794
+                                  )
+                                },
+                                [
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-list",
+                                    { staticClass: "trans" },
+                                    [
                                       _c(
-                                        "v-btn",
-                                        _vm._g(
-                                          {
-                                            attrs: {
-                                              color: "teal",
-                                              dark: "",
-                                              icon: ""
-                                            }
-                                          },
-                                          on
-                                        ),
+                                        "v-list-tile",
+                                        {
+                                          staticClass: "list-tile",
+                                          attrs: {
+                                            href: "/posts/edit/" + _vm.id
+                                          }
+                                        },
                                         [
-                                          _c("v-icon", [
+                                          _c("v-list-tile-title", [
                                             _vm._v(
-                                              "\n                                settings\n                            "
+                                              "\n                                    Edit\n                                "
                                             )
                                           ])
                                         ],
                                         1
-                                      )
-                                    ]
-                                  }
-                                }
-                              ])
-                            },
-                            [
-                              _vm._v(" "),
-                              _c(
-                                "v-list",
-                                { staticClass: "trans" },
-                                [
-                                  _c(
-                                    "v-list-tile",
-                                    {
-                                      staticClass: "list-tile",
-                                      attrs: { href: "/posts/edit/" + _vm.id }
-                                    },
-                                    [
-                                      _c("v-list-tile-title", [
-                                        _vm._v(
-                                          "\n                                    Edit\n                                "
-                                        )
-                                      ])
-                                    ],
-                                    1
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "v-list-tile",
-                                    {
-                                      staticClass: "list-tile",
-                                      on: { click: _vm.confirm }
-                                    },
-                                    [
-                                      _c("v-list-tile-title", [
-                                        _vm._v(
-                                          "\n                                    Delete\n                                "
-                                        )
-                                      ])
-                                    ],
-                                    1
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "form",
-                                    {
-                                      ref: "deleteForm",
-                                      attrs: {
-                                        action: "/post/delete",
-                                        method: "post"
-                                      }
-                                    },
-                                    [
-                                      _c("input", {
-                                        attrs: { type: "hidden", name: "id" },
-                                        domProps: { value: _vm.id }
-                                      }),
+                                      ),
                                       _vm._v(" "),
-                                      _c("input", {
-                                        attrs: {
-                                          type: "hidden",
-                                          name: "_token"
+                                      _c(
+                                        "v-list-tile",
+                                        {
+                                          staticClass: "list-tile",
+                                          on: { click: _vm.confirm }
                                         },
-                                        domProps: { value: _vm.csrf }
-                                      })
-                                    ]
+                                        [
+                                          _c("v-list-tile-title", [
+                                            _vm._v(
+                                              "\n                                    Delete\n                                "
+                                            )
+                                          ])
+                                        ],
+                                        1
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "form",
+                                        {
+                                          ref: "deleteForm",
+                                          attrs: {
+                                            action: "/post/delete",
+                                            method: "post"
+                                          }
+                                        },
+                                        [
+                                          _c("input", {
+                                            attrs: {
+                                              type: "hidden",
+                                              name: "id"
+                                            },
+                                            domProps: { value: _vm.id }
+                                          }),
+                                          _vm._v(" "),
+                                          _c("input", {
+                                            attrs: {
+                                              type: "hidden",
+                                              name: "_token"
+                                            },
+                                            domProps: { value: _vm.csrf }
+                                          })
+                                        ]
+                                      )
+                                    ],
+                                    1
                                   )
                                 ],
                                 1
@@ -40337,9 +40402,7 @@ var render = function() {
                             ],
                             1
                           )
-                        ],
-                        1
-                      ),
+                        : _vm._e(),
                       _vm._v(" "),
                       _c(
                         "confirm",
@@ -40394,62 +40457,74 @@ var render = function() {
                     _vm._v(_vm._s(_vm.comments.length) + " Comments")
                   ]),
                   _vm._v(" "),
-                  _c(
-                    "form",
-                    {
-                      attrs: {
-                        action: "/comment",
-                        method: "post",
-                        id: "comment-form"
-                      }
-                    },
-                    [
-                      _c("input", {
-                        attrs: { type: "hidden", name: "_token" },
-                        domProps: { value: _vm.csrf }
-                      }),
-                      _vm._v(" "),
-                      _c("input", {
-                        attrs: { type: "hidden", name: "post_id" },
-                        domProps: { value: _vm.id }
-                      }),
-                      _vm._v(" "),
-                      _c("v-text-field", {
-                        staticClass: "mx-4 comment-text",
-                        attrs: { name: "comment", label: "Comment here" },
-                        model: {
-                          value: _vm.comment,
-                          callback: function($$v) {
-                            _vm.comment = $$v
-                          },
-                          expression: "comment"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c(
-                        "v-layout",
+                  !_vm.checklogin
+                    ? _c(
+                        "v-btn",
+                        {
+                          attrs: { color: "purple", dark: "", href: "/login" }
+                        },
+                        [_vm._v("Login to comment")]
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.checklogin
+                    ? _c(
+                        "form",
+                        {
+                          attrs: {
+                            action: "/comment",
+                            method: "post",
+                            id: "comment-form"
+                          }
+                        },
                         [
-                          _c("v-spacer"),
+                          _c("input", {
+                            attrs: { type: "hidden", name: "_token" },
+                            domProps: { value: _vm.csrf }
+                          }),
+                          _vm._v(" "),
+                          _c("input", {
+                            attrs: { type: "hidden", name: "post_id" },
+                            domProps: { value: _vm.id }
+                          }),
+                          _vm._v(" "),
+                          _c("v-text-field", {
+                            staticClass: "mx-4 comment-text",
+                            attrs: { name: "comment", label: "Comment here" },
+                            model: {
+                              value: _vm.comment,
+                              callback: function($$v) {
+                                _vm.comment = $$v
+                              },
+                              expression: "comment"
+                            }
+                          }),
                           _vm._v(" "),
                           _c(
-                            "v-btn",
-                            {
-                              staticClass: "mx-4",
-                              attrs: {
-                                color: "primary",
-                                disabled: _vm.comment == "",
-                                type: "submit",
-                                form: "comment-form"
-                              }
-                            },
-                            [_vm._v("Submit")]
+                            "v-layout",
+                            [
+                              _c("v-spacer"),
+                              _vm._v(" "),
+                              _c(
+                                "v-btn",
+                                {
+                                  staticClass: "mx-4",
+                                  attrs: {
+                                    color: "primary",
+                                    disabled: _vm.comment == "",
+                                    type: "submit",
+                                    form: "comment-form"
+                                  }
+                                },
+                                [_vm._v("Submit")]
+                              )
+                            ],
+                            1
                           )
                         ],
                         1
                       )
-                    ],
-                    1
-                  ),
+                    : _vm._e(),
                   _vm._v(" "),
                   _c(
                     "div",

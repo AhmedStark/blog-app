@@ -19,29 +19,32 @@
           width="500"
         >
               <template v-slot:activator="{ on }">
+                <dir v-if="admin">
+                  <v-btn
+                    v-for="icon in icons"
+                    :key="icon.id"
+                    class="mx-3"
+                    dark
+                    icon
+                    v-on="on"
+                  >
+                    <v-icon size="24px">{{ icon.icon }}</v-icon>
+                </v-btn>
 
-                <v-btn
-                  v-if="admin"
-                  v-for="icon in icons"
-                  :key="icon.id"
-                  class="mx-3"
-                  dark
-                  icon
-                  v-on="on"
-                >
-                  <v-icon size="24px">{{ icon.icon }}</v-icon>
-                </v-btn>
-                <v-btn
-                  v-for="icon in icons"
-                  :href="icon.link"
-                  v-if="!admin"
-                  :key="icon.id"
-                  class="mx-3"
-                  dark
-                  icon
-                >
-                  <v-icon size="24px">{{ icon.icon }}</v-icon>
-                </v-btn>
+                </dir>
+                <div v-if="!admin">
+                  <v-btn
+                    v-for="icon in icons"
+                    :href="icon.link"
+                    :key="icon.id"
+                    class="mx-3"
+                    dark
+                    icon
+                  >
+                    <v-icon size="24px">{{ icon.icon }}</v-icon>
+                  </v-btn>
+                </div>
+                
 
               </template>
 
@@ -66,6 +69,8 @@
                       label="Facebook link"
                       required
                       class="mx-4"
+
+                      :value = "icons[0].link"
                       ></v-text-field>
 
                       <v-text-field
@@ -73,17 +78,21 @@
                       label="Twitter link"
                       required
                       class="mx-4"
+                      :value = "icons[1].link"
                       ></v-text-field>
 
                       <v-text-field
                       name="linkedin"
                       label="LinkedIn link"
                       required
+
+                      :value = "icons[2].link"
                       class="mx-4"
                       ></v-text-field>
 
                       <v-text-field
                       name="insta"
+                      :value = "icons[3].link"
                       label="Instagram link"
                       required
                       class="mx-4"

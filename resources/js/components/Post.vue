@@ -8,7 +8,7 @@
             <input type="hidden" name="_token" :value="csrf" />
         </form>
 
-        <div class="ml-4">
+        <div v-if="admin" class="ml-4">
 
             <v-btn icon :href="'/posts/edit/'+id"><v-icon >edit</v-icon></v-btn>
             <v-btn icon @click="confirm" ><v-icon color="red">delete</v-icon></v-btn>
@@ -35,6 +35,9 @@
 <script>
 export default {
     props:{
+        admin:{
+            default:false,type:Boolean
+        },
         id:{default:"",type:String},
         title:{default:"",type:String},
         content:{default:"",type:String},
