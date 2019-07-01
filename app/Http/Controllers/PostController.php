@@ -59,7 +59,8 @@ class PostController extends Controller
             return view('post-page')->with(['post'=>Post::find($id),'icons'=>$icons,'comments'=>$comments]);
         }
 
-        return view('post-404');
+        $icons=Social::all();
+        return view('post-404')->with(['icons'=>$icons]);
         
     }
 
