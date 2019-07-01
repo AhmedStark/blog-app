@@ -29,8 +29,8 @@
 
                     <v-flex md2>
                         <v-btn @click="confirm" class="green" dark large>
-                            Publish 
-                            <v-icon class="ml-1">Update</v-icon>
+                            Change 
+                            <v-icon class="ml-1">update</v-icon>
                         </v-btn>
                     </v-flex>
 

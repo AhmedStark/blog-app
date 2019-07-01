@@ -8,13 +8,14 @@
 require("./bootstrap");
 
 window.Vue = require('vue');
-import Vue from 'vue'
+import Vue from 'vue';
 
-import Vuetify from 'vuetify'
-
+import Vuetify from 'vuetify';
+import Vuex from 'vuex';
 var VueCookie = require('vue-cookie');
 
-Vue.use(Vuetify)
+Vue.use(Vuex);
+Vue.use(Vuetify);
 Vue.use(VueCookie);
 
 import 'vuetify/dist/vuetify.min.css' // Ensure you are using css-loader

@@ -39632,10 +39632,10 @@ var render = function() {
                                     },
                                     [
                                       _vm._v(
-                                        "\n                            Publish \n                            "
+                                        "\n                            Change \n                            "
                                       ),
                                       _c("v-icon", { staticClass: "ml-1" }, [
-                                        _vm._v("Update")
+                                        _vm._v("update")
                                       ])
                                     ],
                                     1
@@ -80164,12 +80164,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vuetify__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuetify */ "./node_modules/vuetify/dist/vuetify.js");
 /* harmony import */ var vuetify__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vuetify__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var vuetify_dist_vuetify_min_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuetify/dist/vuetify.min.css */ "./node_modules/vuetify/dist/vuetify.min.css");
-/* harmony import */ var vuetify_dist_vuetify_min_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vuetify_dist_vuetify_min_css__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var vueditor__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vueditor */ "./node_modules/vueditor/dist/script/vueditor.min.js");
-/* harmony import */ var vueditor__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(vueditor__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var vueditor_dist_style_vueditor_min_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vueditor/dist/style/vueditor.min.css */ "./node_modules/vueditor/dist/style/vueditor.min.css");
-/* harmony import */ var vueditor_dist_style_vueditor_min_css__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(vueditor_dist_style_vueditor_min_css__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var vuetify_dist_vuetify_min_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuetify/dist/vuetify.min.css */ "./node_modules/vuetify/dist/vuetify.min.css");
+/* harmony import */ var vuetify_dist_vuetify_min_css__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(vuetify_dist_vuetify_min_css__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var vueditor__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vueditor */ "./node_modules/vueditor/dist/script/vueditor.min.js");
+/* harmony import */ var vueditor__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(vueditor__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var vueditor_dist_style_vueditor_min_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vueditor/dist/style/vueditor.min.css */ "./node_modules/vueditor/dist/style/vueditor.min.css");
+/* harmony import */ var vueditor_dist_style_vueditor_min_css__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(vueditor_dist_style_vueditor_min_css__WEBPACK_IMPORTED_MODULE_5__);
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -80181,8 +80182,10 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 
 
 
+
 var VueCookie = __webpack_require__(/*! vue-cookie */ "./node_modules/vue-cookie/src/vue-cookie.js");
 
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_2__["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuetify__WEBPACK_IMPORTED_MODULE_1___default.a);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(VueCookie);
  // Ensure you are using css-loader
@@ -80201,7 +80204,7 @@ var config = {
   fontSize: ['12px', '14px', '16px', '18px', '0.8rem', '1.0rem', '1.2rem', '1.5rem', '2.0rem'],
   uploadUrl: ''
 };
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vueditor__WEBPACK_IMPORTED_MODULE_3___default.a, config);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vueditor__WEBPACK_IMPORTED_MODULE_4___default.a, config);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('main-template', __webpack_require__(/*! ./components/MainTemplate.vue */ "./resources/js/components/MainTemplate.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('post-404', __webpack_require__(/*! ./components/Post404.vue */ "./resources/js/components/Post404.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('post-page', __webpack_require__(/*! ./components/PostPage.vue */ "./resources/js/components/PostPage.vue")["default"]);
