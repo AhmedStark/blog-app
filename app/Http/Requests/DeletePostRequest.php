@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Requests;
-
+use Sentinel;
 use Illuminate\Foundation\Http\FormRequest;
 
 class DeletePostRequest extends FormRequest
@@ -13,7 +13,11 @@ class DeletePostRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        $user=Sentinel::getUser();
+        if (!$user->inRole('admin')){
+            return false;
+        }
+        return true;
     }
 
     /**
@@ -24,7 +28,7 @@ class DeletePostRequest extends FormRequest
     public function rules()
     {
         return [
-            'content' => 'required',
+            'id' => 'required',
         ];
     }
 }
