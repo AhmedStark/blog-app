@@ -73,7 +73,7 @@ class MakeAdminCommand extends Command
         }elseif (strlen($request['password']<self::MIN_PASS)){
             $this->warn('Password has to be more than 6 letters');
         }elseif ($validRequest->fails()){
-            $this->warn('Password must be of 6 characters or more.');
+            $this->warn('Password has to be more than 6 letters');
         }else{
             $user = Sentinel::registerAndActivate($request);
             $user->name = $request['name'];

@@ -16,6 +16,8 @@ Route::middleware(['loggedIn','admin'])->group(function(){
     Route::get('/admin/create-post', 'PostController@CreatePostView');
 
     Route::post('/store-post', 'PostController@store');
+    
+
 
 });
 

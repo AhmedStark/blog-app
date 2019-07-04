@@ -13,10 +13,7 @@ class UpdatePostRequest extends FormRequest
      */
     public function authorize()
     {
-        $user=Sentinel::getUser();
-        if (!$user->inRole('admin')){
-            return false;
-        }
+        
         return true;
     }
 
