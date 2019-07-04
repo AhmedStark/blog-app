@@ -19,19 +19,7 @@
         <body>
         <div id='app'>
         <main-template 
-            @if($user = Sentinel::check())
-                 checklogin
-                
-            @endif
-            
-            @if(Sentinel::getUser() !== null)
-
-                @if(Sentinel::getUser()->inRole("admin"))
-                    admin
-                @endif
-
-            @endif
-            :icons="{{json_encode($icons)}}">
+           >
             <div slot="content">
 
                 @yield("content")

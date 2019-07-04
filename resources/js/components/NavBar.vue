@@ -60,18 +60,12 @@
 var VueCookie = require('vue-cookie');
 
 export default {
-    props:{
-        checklogin:{
-            default:false,
-            type:Boolean,
-        },
-        name:{
-            default:"Ahmed",
-            type:String,
-        }
-    },
+    
     data(){
       return{
+        csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+        checklogin:false,
+        name:"",
         csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
         darkMode:VueCookie.get("dark_mode")=="on",
           }
@@ -80,7 +74,17 @@ export default {
           VueCookie.get("dark_mode")=="on" ? VueCookie.set('dark_mode', 'off'):VueCookie.set("dark_mode","on");
           this.$emit('changeMode');
           this.darkMode=!this.darkMode;
-        }
+        },getUserDetails:function(){
+        axios.get('/user-details').then((response)=> {
+            console.log(response.data['admin'])
+            this.checklogin = response.data.logged_in;
+        }).catch(function(error){
+        }).then((response)=> {
+        });
+      }
+    },mounted(){
+      this.getUserDetails();
+
     }
 }
 </script>

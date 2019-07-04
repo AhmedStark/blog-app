@@ -16,9 +16,6 @@ class LoginRequest extends FormRequest
         
         //checking if the user is a guest
 
-        if ($user=Sentinel::check()){
-            return false;
-        }
         return true;
     }
     
@@ -32,7 +29,7 @@ class LoginRequest extends FormRequest
     {
         return [
             'email' => "email|required",
-            'pwd' => "required",
+            'password' => "required",
         ];
     }
 }

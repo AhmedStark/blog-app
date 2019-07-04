@@ -1,18 +1,13 @@
 <template>
 <div>
 <v-container>
-    
     <v-snackbar v-model="snackbar" top :timeout="3000" >{{ snackbarContent }}<v-btn dark flat  color="red" @click="snackbar = false">Close</v-btn> </v-snackbar>
-
     <v-card>
-
-
         <v-card-title class="display-1">
             <v-layout>
                 {{title}}   
                 
                 <v-spacer></v-spacer>
-
                 
                     <div class="text-xs-center" v-if="admin">
                         <v-menu offset-y>
@@ -62,56 +57,19 @@
 
             </v-layout>
         </v-card-title>
-        
-        
-        
         <v-card-text  class='content'>
         <v-layout>
-
             <v-flex class="mx-2" md12 >
+                <div v-html="content">
 
-
-            <div v-html="content">
-
-            </div>
-
-
+                </div>
             </v-flex>
 
         </v-layout>
         <br>
         <br>
-            <h1 class="title">{{comments.length}} Comments</h1>
-            <v-btn v-if="!checklogin" color="purple" dark href="/login">Login to comment</v-btn>
-        <form action="/comment" method='post' id='comment-form' v-if="checklogin">
-
-            <input type="hidden" name="_token" :value="csrf" />
-            
-            <input type="hidden" name="post_id" :value="id" />
-
-            <v-text-field v-model="comment" name='comment' class='mx-4 comment-text' label='Comment here'>
-            
-            </v-text-field>
-            <v-layout>
-                
-                <v-spacer></v-spacer>
-                 <v-btn color='primary' class='mx-4' :disabled="comment==''" type='submit' form='comment-form'>Submit</v-btn>
-
-            </v-layout>
-          
-        </form>
-
-        <div class="mx-4">
-                <v-divider></v-divider>
-
-                <comment class="mb-4" v-for="comment in comments" :key="comment.id" :user-name="comment.user_name" :comment="comment.comment" :createdAt="comment.created_at"></comment>
-        </div>
+            <comment-section :id="id"></comment-section>
         </v-card-text>
-
-
-
-        
-
         
     </v-card>
 </v-container> 
@@ -119,15 +77,11 @@
 </div>
 
 </template>
-
-
-
 <script>
 export default {
     props:{
         snackbarStatus:{default:false,type:Boolean},
-        admin:{default:false,type:Boolean},
-        checklogin:{default:false,type:Boolean},
+        
         snackbarPassedContent:{
             type:String,default:""
         },
@@ -142,15 +96,12 @@ export default {
         content:{
             default:'',
             type:String
-        },comments:{
-            type:Array,default:function () {
-                return [];
-            }
         }
 
     },
     data(){
         return{
+            admin:false,
             snackbar:this.snackbarStatus,
             snackbarContent:this.snackbarPassedContent,
             comment:"",
@@ -163,8 +114,16 @@ export default {
         confirm:function(){
             
             this.$refs.submit_confirm.open();
+        },getUserDetails(){
+            axios.get('/user-details').then((response)=> {
+                this.admin = response.data.admin;
+            }).catch(function(error){
+            }).then((response)=> {
+            });
         }
-    },
+    },mounted(){
+        this.getUserDetails();
+    }
 }
 </script>
 <style scope>

@@ -21,5 +21,11 @@ class SocialController extends Controller
         }
         return redirect("/")->with(['response'=>'Update complete']);
     }
+
     
+    public function getLinks(){
+    
+        return Social::all();
+        
+    }
 }

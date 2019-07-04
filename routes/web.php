@@ -58,5 +58,9 @@ Route::middleware(['notLoggedIn'])->group(function(){
 Route::get('/', 'PostController@showPosts');
 
 Route::post('/social', 'SocialController@updateLinks');
+Route::get('/social', 'SocialController@getLinks');
+Route::get('/user-details', 'UserController@getUserDetails');
 
 Route::get('/posts/{id}', 'PostController@showPost');
+Route::get('/posts', 'PostController@getPosts');
+Route::get('/posts/{id}/comments', 'PostController@getComments');

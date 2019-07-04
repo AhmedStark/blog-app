@@ -25,7 +25,7 @@
                 <input type="hidden" name="_token" :value="csrf" />
                 
                 <v-text-field
-                name="pwd"
+                name="password"
                 type="password" 
                 label="Password"
                 required
@@ -33,7 +33,7 @@
                 ></v-text-field>
                 
                 <v-text-field
-                name="rpwd"
+                name="repeat_password"
                 type="password" 
                 label="Repeat password"
                 required

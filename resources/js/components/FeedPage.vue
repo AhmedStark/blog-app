@@ -10,7 +10,7 @@
         <v-layout wrap>
         
         <v-flex offset-md2 md8 >
-            <post :admin="admin" class="ma-2" v-for="(post,index) in posts.data" :title="post.title" :id="post._id" :content="post.content" :date="post.created_at" :key="index"></post>
+            <post :admin="admin" class="ma-2" v-for="(post,index) in posts" :title="post.title" :id="post._id" :content="post.content" :date="post.created_at" :key="index"></post>
         </v-flex>
         
         <v-flex offset-md2 md8 >
@@ -18,7 +18,7 @@
             <div class="text-xs-center">
                 <v-pagination
                 v-model="page"
-                :length="posts.last_page"
+                :length="last_page"
                 @input="changePage"
                 ></v-pagination>
             </div>
@@ -33,32 +33,45 @@
         </v-card>
 </template>
 <script>
+import { isNumber } from 'util';
 export default {
     props:{
-        admin:{
-            type:Boolean,default:false
-        },
         snackbarStatus:{default:false,type:Boolean},
         snackbarPassedContent:{
             type:String,default:""
-        },
-        posts:{
-            type:Object,
-            default:function(){
-                return {}
-            }
-    }   
+        }
     },data(){
         return{
+            admin:false,
             snackbar:this.snackbarStatus,
             snackbarContent:this.snackbarPassedContent,
-            page:this.posts.current_page
+            page:Number(window.location.hash.substr(1))!==null?Number(window.location.hash.substr(1)):1,
+            posts:[],
+            last_page:1,
         }
     },methods: {
         changePage:function(){
-            window.location.href = "/?page="+this.page
+            window.location.href = "/#"+this.page;
+            this.getPosts();
+        },getUserDetails(){
+            axios.get('/user-details').then((response)=> {
+                this.admin = response.data.admin;
+            }).catch(function(error){
+            }).then((response)=> {
+            });
+        },getPosts(){
+            axios.get('/posts?page='+this.page).then((response)=> {
+                this.posts = response.data.data;
+                this.last_page = response.data.last_page;
+                this.page = response.data.current_page;
+            }).catch(function(error){
+            }).then((response)=> {
+            });
         }
-    },
+    },mounted(){
+        this.getUserDetails();
+        this.getPosts();
+    }
 
 }
 </script>

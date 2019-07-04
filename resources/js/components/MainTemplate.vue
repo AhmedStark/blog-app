@@ -6,7 +6,7 @@
 
         </slot>
         </v-container>
-        <app-footer :icons="icons" :admin="admin"></app-footer>
+        <app-footer :admin="admin"></app-footer>
     </v-app>   
 
 </template>
@@ -15,7 +15,7 @@
 var VueCookie = require('vue-cookie');
 export default {
     props:{
-        icons:{type:Array,defualt:function(){return []}},
+        
         checklogin:{type:Boolean,default:false},
         admin:{type:Boolean,default:false},
     },

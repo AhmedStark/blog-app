@@ -15,7 +15,7 @@
                 </v-text-field>
                 <input type="hidden" name="_token" :value="csrf" />
                 <v-text-field
-                name="pwd"
+                name="password"
                 type="password" 
                 label="Password"
                 required

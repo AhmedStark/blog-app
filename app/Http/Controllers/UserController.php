@@ -17,11 +17,18 @@ class UserController extends Controller
     public const MAX_PASS=225;
     public const MIN_PASS=6;*/
 
+    public function getUserDetails(){
+        if(Sentinel::check()){
+            $user = Sentinel::getUser();
+            return ['logged_in'=>true,"admin"=>$user->inRole('admin')];
+        }
+        return ['logged_in'=>false,"admin"=>false];
+    }
 
     public function login(LoginRequest $request){
         $credentials = [
             'email'    => $request->email,
-            'password' => $request->pwd,
+            'password' => $request->password,
         ];
 
         
@@ -62,8 +69,8 @@ class UserController extends Controller
         $credentials = [
             'name'     => $request->name,
             'email'    => $request->email,
-            'password' => $request->pwd,
-            'r_password' =>$request->rpwd,
+            'password' => $request->password,
+            'r_password' =>$request->repeat_password,
         ];
 
         /*$emptyValidation=[
@@ -110,7 +117,7 @@ class UserController extends Controller
     public static function firstLogin(Request $request){
         $credentials = [
             'email'    => $request['email'],
-            'password' => $request['pwd'],
+            'password' => $request['password'],
         ];
         Sentinel::authenticate($credentials);
         return redirect('/')->with(['response'=>'Welcome dude']);
@@ -119,12 +126,12 @@ class UserController extends Controller
     
     public function loginView()
     {
-        return view('login')->with(['icons'=>Social::all()]);
+        return view('login');
     }
 
     public function signupView()
     {
-        return view('create-user')->with(['icons'=>Social::all()]);
+        return view('create-user');
     }
 
 }

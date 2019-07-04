@@ -30,6 +30,7 @@ Vue.component('main-template', require('./components/MainTemplate.vue').default)
 Vue.component('post-404', require('./components/Post404.vue').default);
 Vue.component('post-page', require('./components/PostPage.vue').default);
 Vue.component('comment', require('./components/Comment.vue').default);
+Vue.component('social-media-dialog', require('./components/SocialMediaDialog.vue').default);
 
 Vue.component('login-form', require('./components/LoginForm.vue').default);
 Vue.component('confirm', require('./components/Confirm.vue').default);
@@ -39,6 +40,7 @@ Vue.component('nav-bar', require('./components/NavBar.vue').default);
 Vue.component('feed-page', require('./components/FeedPage.vue').default);
 Vue.component('app-footer', require('./components/AppFooter.vue').default);
 Vue.component('post', require('./components/Post.vue').default);
+Vue.component('comment-section', require('./components/CommentSection.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

@@ -97,4 +97,24 @@ class PostController extends Controller
         return redirect("/")->with(['snackbar'=>'Post deleted ..!']);
     }
 
+    public function getComments($id){
+        $post=Post::find($id);
+        if ($post!=null){
+            $comments = $post->comments()->get();
+            for($i=0;$i<count($comments);$i++){
+                $userID=$comments[$i]['user_id'];
+                $userName = User::find($userID);
+                $comments[$i]['user_name']=$userName->name;
+            }
+            return $comments;
+        }
+        return [];
+    }
+
+    public function getPosts(){
+
+        return Post::orderBy("created_at","desc")->paginate(6);
+
+    }
+    
 }

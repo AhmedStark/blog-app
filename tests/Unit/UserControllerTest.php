@@ -12,9 +12,9 @@ class UserControllerTest extends TestCase
 {
     private $credentials=[
         'name' => 'John',
-        'email'    => 'joe@s.c',
-        'pwd' => 'password',
-        'rpwd'=>'password',
+        'email'    => 'joe.smiths@example.co.nz',
+        'password' => 'password',
+        'repeat_password'=>'password',
     ];
     
     public function testSignUp()

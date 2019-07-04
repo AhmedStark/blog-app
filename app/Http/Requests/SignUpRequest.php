@@ -32,8 +32,8 @@ class SignUpRequest extends FormRequest
         return [
             'name' => "required|max:".self::MAX_NAME,
             'email' => "unique:users|email|required|max:".self::MAX_EMAIL,
-            'pwd' => "required|min:".self::MIN_PASS."|max:".self::MAX_PASS,
-            'rpwd' => "required|max:".self::MAX_PASS,
+            'password' => "required|min:".self::MIN_PASS."|max:".self::MAX_PASS,
+            'repeat_password' => "required|max:".self::MAX_PASS,
         ];
     }
 }
