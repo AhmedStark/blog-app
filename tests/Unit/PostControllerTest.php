@@ -32,7 +32,7 @@ class PostControllerTest extends TestCase
         ,"status"=>self::FILEDS_EMPTY_FAIL],
 
         ["title"=>"title"
-        ,"content"=>"content"
+        ,"content"=>"new content content content content new content content content content "
         ,"status"=>self::SUCCESS],
     ];
     public const CREATE_POST_URL = "/store-post";
@@ -71,7 +71,7 @@ class PostControllerTest extends TestCase
 
         $post=Post::orderby('created_at','desc')->first();
         $id=$post->id;
-        $response = $this->json('POST', '/post/update/', ['title' => 'new title',"content"=>'new content','post_id'=>$id]);
+        $response = $this->json('POST', '/post/update/', ['title' => 'new title',"content"=>'new content content content content new content content content content ','post_id'=>$id]);
                 
         $response->assertStatus(302);
         return  $id;
