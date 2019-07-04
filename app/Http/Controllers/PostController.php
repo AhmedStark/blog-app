@@ -15,9 +15,7 @@ use App\User;
 class PostController extends Controller
 {
     public function store(StoreBlogPost $request){
-        /*if(empty($request->title)||empty($request->content)){
-            return redirect()->back()->with(['response'=>'<p class="red--text">You left one of the fields empty</p>','empty'=>true]);
-        }*/
+        
 
         $post = new Post;
         $post->title = $request->title;
@@ -71,14 +69,7 @@ class PostController extends Controller
     public function update(UpdatePostRequest $request)
     {
 
-        /*if(empty($request->title)||empty($request->content)){
-            return redirect()->back()->with(['response'=>'<p class="red--text">You left one of the fields empty</p>','empty'=>true]);
-        }else
         
-        if(empty($request->post_id)){
-            return redirect()->back()->with(['response'=>'<p class="red--text">Something wrong happened</p>','empty'=>true]);
-        }*/
-
         $post=Post::find($request->post_id);
         $post->title=$request->title;
         $post->content = $request->content;
@@ -88,9 +79,7 @@ class PostController extends Controller
 
     public function delete(DeletePostRequest $request)
     {
-        /*if(empty($request->id)){
-            return redirect()->back()->with(['response'=>'<p class="red--text">Something wrong happened</p>']);
-        }*/
+        
         
         $post=Post::find($request->id);
         $post->delete();
