@@ -71,7 +71,6 @@ class PostControllerTest extends TestCase
 
         $post=Post::orderby('created_at','desc')->first();
         $id=$post->id;
-        $this->id=$id;
         $response = $this->json('POST', '/post/update/', ['title' => 'new title',"content"=>'new content','post_id'=>$id]);
                 
         $response->assertStatus(302);
@@ -91,5 +90,26 @@ class PostControllerTest extends TestCase
         $this->assertTrue($newContent=='new content');
     }
 
+
+    public function testDeletePost()
+    {
+
+        $this->withoutMiddleware();
+
+
+        $post=Post::orderby('created_at','desc')->first();
+        $id=$post->id;
+        $response = $this->json('POST', '/post/delete/', ['id'=>$id]);        
+        $response->assertStatus(302);
+        return  $id;
+    }
+
+    /**
+     * @depends testDeletePost
+     */
+    public function testDeleteHappened($id)
+    {   
+        $this->assertTrue(!Post::find($id));
+    }
     
 }

@@ -18,9 +18,7 @@ class SignUpRequest extends FormRequest
      */
     public function authorize()
     {
-        if ($user=Sentinel::check()){
-            return false;
-        }
+        
         return true;
     }
 
