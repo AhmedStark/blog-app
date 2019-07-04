@@ -23,6 +23,10 @@
                 ></v-text-field>
                 <p v-html="response"></p>
                 <v-btn form="login-form" color="green" dark type="submit" class="mx-4">Login</v-btn>
+
+                <slot name="content">
+
+                </slot>
             </v-form>
         </v-card-text>
     </v-card>    

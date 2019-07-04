@@ -7,7 +7,7 @@ Route::middleware(['loggedIn','admin'])->group(function(){
 
     //Admin
 
-    Route::get('/posts/edit/{id}', 'PostController@ShowEdit');
+    Route::get('/posts/edit/{id}', 'PostController@showUpdateView');
 
     Route::post('/post/update','PostController@update');
 
@@ -53,7 +53,7 @@ Route::middleware(['notLoggedIn'])->group(function(){
 
 
 
-Route::get('/', 'PostController@getPosts');
+Route::get('/', 'PostController@showPosts');
 
 Route::post('/social', 'SocialController@updateLinks');
 

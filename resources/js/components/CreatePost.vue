@@ -46,7 +46,7 @@
 
                 <input type="hidden" value="" name='content' ref='content'/>
 
-                
+                <slot name='content'></slot>
             </form>
             
             <form v-else action="/store-post" method="post" ref='post_form'>
@@ -82,7 +82,7 @@
 
                 <input type="hidden" value="" name='content' ref='content'/>
 
-                
+                <slot name='content'></slot>
             </form>
                 <Vueditor ref="editor" class="ma-3 raw" ></Vueditor>
         </v-card-text>

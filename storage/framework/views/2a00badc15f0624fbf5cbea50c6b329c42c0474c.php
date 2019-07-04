@@ -1,9 +1,37 @@
 <?php $__env->startSection("content"); ?>
 <?php if(session('response')!==null): ?>
-    <create-post-form response="<?php echo e(session('response')); ?>" update :post="<?php echo e(json_encode($post)); ?>" ></create-post-form>
+    <create-post-form response="<?php echo e(session('response')); ?>" update :post="<?php echo e(json_encode($post)); ?>" >
+        <div slot="content">
+
+        <?php if($errors->any()): ?>
+            <div class="alert alert-danger">
+                    <ul>
+                        <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <li><?php echo e($error); ?></li>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    </ul>
+                </div>
+        <?php endif; ?>
+
+        </div>
+    </create-post-form>
 
 <?php else: ?>
-    <create-post-form update :post="<?php echo e(json_encode($post)); ?>" ></create-post-form>
+    <create-post-form update :post="<?php echo e(json_encode($post)); ?>" >
+        <div slot="content">
+
+        <?php if($errors->any()): ?>
+            <div class="alert alert-danger">
+                    <ul>
+                        <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <li><?php echo e($error); ?></li>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    </ul>
+                </div>
+        <?php endif; ?>
+
+        </div>
+    </create-post-form>
 <?php endif; ?>
 
 <?php $__env->stopSection(); ?>

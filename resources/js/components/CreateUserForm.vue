@@ -42,6 +42,8 @@
 
                 <p v-html="response"></p>
                 <v-btn form="signup-form" color="green" dark type="submit" class="mx-4">sign up!</v-btn>
+
+                <slot name='content'></slot>
             </v-form>
         </v-card-text>
     </v-card>    

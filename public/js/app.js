@@ -2203,6 +2203,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     response: {
@@ -2309,6 +2311,10 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
 //
 //
 //
@@ -39681,9 +39687,11 @@ var render = function() {
                               value: "",
                               name: "content"
                             }
-                          })
+                          }),
+                          _vm._v(" "),
+                          _vm._t("content")
                         ],
-                        1
+                        2
                       )
                     : _c(
                         "form",
@@ -39775,9 +39783,11 @@ var render = function() {
                               value: "",
                               name: "content"
                             }
-                          })
+                          }),
+                          _vm._v(" "),
+                          _vm._t("content")
                         ],
-                        1
+                        2
                       ),
                   _vm._v(" "),
                   _c("Vueditor", { ref: "editor", staticClass: "ma-3 raw" })
@@ -39901,9 +39911,11 @@ var render = function() {
                               }
                             },
                             [_vm._v("sign up!")]
-                          )
+                          ),
+                          _vm._v(" "),
+                          _vm._t("content")
                         ],
-                        1
+                        2
                       )
                     ],
                     1
@@ -40168,9 +40180,11 @@ var render = function() {
                               }
                             },
                             [_vm._v("Login")]
-                          )
+                          ),
+                          _vm._v(" "),
+                          _vm._t("content")
                         ],
-                        1
+                        2
                       )
                     ],
                     1

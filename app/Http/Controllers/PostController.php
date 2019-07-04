@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use App\Http\Requests\DeletePostRequest;
+use App\Http\Requests\StoreBlogPost;
+use App\Http\Requests\UpdatePostRequest;
 use App\Post;
 use App\Social;
 use App\Comment;
@@ -11,10 +14,10 @@ use App\User;
 
 class PostController extends Controller
 {
-    public function store(Request $request){
-        if(empty($request->title)||empty($request->content)){
+    public function store(StoreBlogPost $request){
+        /*if(empty($request->title)||empty($request->content)){
             return redirect()->back()->with(['response'=>'<p class="red--text">You left one of the fields empty</p>','empty'=>true]);
-        }
+        }*/
 
         $post = new Post;
         $post->title = $request->title;
@@ -32,13 +35,13 @@ class PostController extends Controller
     }
 
 
-    public function ShowEdit($id)
+    public function showUpdateView($id)
     {
         $post=Post::find($id);
         return view("update-post")->with(['post'=>$post,'update'=>true,'icons'=>Social::all()]);
     }
 
-    public function getPosts()
+    public function showPosts()
     {
         return view('main')->with(["icons"=>Social::all(),'posts'=>Post::orderBy("created_at","desc")->paginate(6)]);
         
@@ -48,6 +51,7 @@ class PostController extends Controller
     {
         if (Post::find($id)!=null){
             $icons=Social::all();
+            
             $post = Post::find($id);
             $comments = $post->comments()->get();
 
@@ -64,14 +68,16 @@ class PostController extends Controller
         
     }
 
-    public function update(Request $request)
+    public function update(UpdatePostRequest $request)
     {
 
-        if(empty($request->title)||empty($request->content)){
+        /*if(empty($request->title)||empty($request->content)){
             return redirect()->back()->with(['response'=>'<p class="red--text">You left one of the fields empty</p>','empty'=>true]);
-        }elseif(empty($request->post_id)){
+        }else
+        
+        if(empty($request->post_id)){
             return redirect()->back()->with(['response'=>'<p class="red--text">Something wrong happened</p>','empty'=>true]);
-        }
+        }*/
 
         $post=Post::find($request->post_id);
         $post->title=$request->title;
@@ -80,11 +86,11 @@ class PostController extends Controller
         return redirect('/posts/'.$post->id)->with(['snackbar'=>'Post updated ..!']);
     }
 
-    public function delete(Request $request)
+    public function delete(DeletePostRequest $request)
     {
-        if(empty($request->id)){
+        /*if(empty($request->id)){
             return redirect()->back()->with(['response'=>'<p class="red--text">Something wrong happened</p>']);
-        }
+        }*/
         
         $post=Post::find($request->id);
         $post->delete();

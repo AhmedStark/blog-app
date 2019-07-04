@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use Sentinel;
 use Illuminate\Http\Request;
+use App\Http\Requests\LoginRequest;
+use App\Http\Requests\SignUpRequest;
 use Validator;
 use App\Social;
 
@@ -10,21 +12,20 @@ use App\Social;
 class UserController extends Controller
 {
     
-    protected $signature = 'make:admin';
-    public const MAX_NAME=225;
+    /*public const MAX_NAME=225;
     public const MAX_EMAIL=225;
     public const MAX_PASS=225;
-    public const MIN_PASS=6;
+    public const MIN_PASS=6;*/
 
 
-    public function login(Request $request){
+    public function login(LoginRequest $request){
         $credentials = [
             'email'    => $request->email,
             'password' => $request->pwd,
         ];
 
         
-        $emptyValidation=[
+        /*$emptyValidation=[
             'email' => "required",
             'pwd' => "required",
 
@@ -40,13 +41,14 @@ class UserController extends Controller
 
         elseif ($validRequest->fails()){
             return redirect('/login')->with(['response'=>'<div class="error--text">One of the fields was empty</dib>']);
-        }else{
+        }*/
+        //else{
             if(!Sentinel::authenticate($credentials)){
                 return redirect('/login')->with(['response'=>'<div class="error--text">User email or password was not right.</div>']);
             }
             Sentinel::authenticate($credentials);
             return redirect('/');
-        }
+        //}
 
     }
 
@@ -55,7 +57,7 @@ class UserController extends Controller
         return redirect('');
     }
 
-    public function signup(Request $request){
+    public function signup(SignUpRequest $request){
 
         $credentials = [
             'name'     => $request->name,
@@ -64,9 +66,9 @@ class UserController extends Controller
             'r_password' =>$request->rpwd,
         ];
 
-        $emptyValidation=[
+        /*$emptyValidation=[
             'name' => "required|max:".self::MAX_NAME,
-            'email' => "required|max:".self::MAX_EMAIL,
+            'email' => "unique:users|email|required|max:".self::MAX_EMAIL,
             'password' => "required|min:".self::MIN_PASS."|max:".self::MAX_PASS,
             'r_password' => "required|max:".self::MAX_PASS,
         ];
@@ -90,7 +92,7 @@ class UserController extends Controller
             return redirect('/signup')->with(['response'=>"<div class=\"error--text\">Password has to be more than 6 letters</div>"]);
         }elseif ($validRequest->fails()){
             return redirect('/signup')->with(['response'=>'<div class="error--text">Password must be of 6 characters or more.</div>']);
-        }else{
+        }else{*/
             $user = Sentinel::registerAndActivate($credentials);
             $role = Sentinel::findRoleBySlug('viewer');
             $role->users()->attach($user);
@@ -98,7 +100,7 @@ class UserController extends Controller
             $user->save();
             return $this->firstLogin($request);
             
-        }
+        //}
 
         
 
@@ -113,6 +115,8 @@ class UserController extends Controller
         Sentinel::authenticate($credentials);
         return redirect('/')->with(['response'=>'Welcome dude']);
     }
+
+    
     public function loginView()
     {
         return view('login')->with(['icons'=>Social::all()]);
